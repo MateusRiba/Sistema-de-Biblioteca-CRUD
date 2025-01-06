@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",            // Nome da tarefa, referenciado em launch.json
+            "type": "shell",            // Executa comando no shell
+            "command": "g++",           // Aqui usamos g++
+            "args": [
+                "-std=c++17",
+                "-g",                   // -g para gerar debug symbols
+                "${workspaceFolder}/main.cpp",
+                //"${workspaceFolder}/src/Livro.cpp",
+                //"${workspaceFolder}/src/Usuario.cpp",
+                //"${workspaceFolder}/src/Emprestimo.cpp",
+                "-I", "${workspaceFolder}/include",
+                "-o", "${workspaceFolder}/build/main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Se quiser rodar essa tarefa apertando Ctrl+Shift+B:
+            "problemMatcher": "$gcc"
+        }
+    ]
+}
