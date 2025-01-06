@@ -10,7 +10,7 @@
             // Altere aqui para o caminho do seu executável de saída.
             // Exemplo no Linux/macOS:   "${workspaceFolder}/build/meu_projeto"
             // Exemplo no Windows:       "${workspaceFolder}/build/meu_projeto.exe"
-            "program": "${workspaceFolder}/build/meu_projeto",
+            "program": "${workspaceFolder}/build/main",
 
             // Argumentos passados na linha de comando, se desejar:
             "args": [],

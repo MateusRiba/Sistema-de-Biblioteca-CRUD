@@ -9,7 +9,7 @@
                 "-std=c++17",
                 "-g",                   // -g para gerar debug symbols
                 "${workspaceFolder}/main.cpp",
-                //"${workspaceFolder}/src/Livro.cpp",
+                "${workspaceFolder}/src/Livro.cpp",
                 //"${workspaceFolder}/src/Usuario.cpp",
                 //"${workspaceFolder}/src/Emprestimo.cpp",
                 "-I", "${workspaceFolder}/include",
