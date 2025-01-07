@@ -31,6 +31,9 @@ public:
     */
     Emprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev);
 
+    //Destrutor Generico
+    ~Emprestimo();
+
     /*
       Método para encerrar/finalizar o empréstimo:
       Recebe a data real de devolução e marca 'finalizado = true'.
@@ -45,8 +48,24 @@ public:
     */
     void exibirEmprestimo() const;
 
+    //Set e Gets (E verificação)
+
+    Usuario* getUsuario() const;
+    void setUsuario(Usuario* u);
+
+    Livro* getLivro() const;
+    void setLivro(Livro* l);
+
+    std::string getDataEmprestimo() const;
+    void setDataEmprestimo(const std::string& dataEmp);
+
+    std::string getDataDevolucao() const;
+    void setDataDevolucao(const std::string& dataDev);
+
     // Retorna true se o empréstimo já foi finalizado (livro devolvido).
     bool isFinalizado() const;
+    void setFinalizado(bool status);
+
 };
 
 #endif 

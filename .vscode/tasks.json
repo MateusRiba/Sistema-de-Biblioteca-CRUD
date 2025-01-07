@@ -15,6 +15,7 @@
                 "${workspaceFolder}/src/Usuario.cpp",
                 "${workspaceFolder}/src/LeitorComum.cpp",
                 "${workspaceFolder}/src/Emprestimo.cpp",
+                "${workspaceFolder}/src/Sistema.cpp",
                 "-I", "${workspaceFolder}/include",
                 "-o", "${workspaceFolder}/build/main"
             ],
