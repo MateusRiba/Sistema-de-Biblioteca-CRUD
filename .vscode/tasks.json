@@ -13,7 +13,8 @@
                 "${workspaceFolder}/src/LivroFisico.cpp",
                 "${workspaceFolder}/src/LivroDigital.cpp",
                 "${workspaceFolder}/src/Usuario.cpp",
-                //"${workspaceFolder}/src/Emprestimo.cpp",
+                "${workspaceFolder}/src/LeitorComum.cpp",
+                "${workspaceFolder}/src/Emprestimo.cpp",
                 "-I", "${workspaceFolder}/include",
                 "-o", "${workspaceFolder}/build/main"
             ],

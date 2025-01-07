@@ -37,3 +37,12 @@ void Usuario::setTelefone(const std::string& t) {
 std::string Usuario::getTelefone() const {
     return telefone;
 }
+
+// Senha
+void Usuario::setSenha(const std::string& s) {
+    telefone = s;
+}
+
+std::string Usuario::getSenha() const {
+    return senha;
+}

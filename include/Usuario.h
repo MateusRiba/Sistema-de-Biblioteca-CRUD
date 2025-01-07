@@ -13,13 +13,14 @@ protected:
     std::string cpf;
     std::string endereco; 
     std::string telefone;
+    std::string senha;
 
 public:
     // Construtor (opcional) - se precisar inicializar algo básico.
     Usuario() = default;
     // Construtor Especifico (para já iniciar o Usuario com os valores definidos!)
-    Usuario(const std::string& n, const std::string& c, const std::string& e, const std::string& t) 
-        :nome(n),cpf(c),endereco(e), telefone(t) {
+    Usuario(const std::string& n, const std::string& c, const std::string& e, const std::string& t, const std::string& s) 
+        :nome(n),cpf(c),endereco(e), telefone(t), senha(s) {
 
         }
     // Destrutor virtual é importante para garantir a chamada correta 
@@ -42,6 +43,10 @@ public:
 
     void setTelefone(const std::string& t);
     std::string getTelefone() const;
+
+    void setSenha(const std::string& s);
+    std::string getSenha() const;
+
 
 };
 
