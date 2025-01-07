@@ -14,7 +14,8 @@ void LivroFisico::exibir() const {
 }
 
 // Sets e Gets
-//PesoGrama
+
+//pesoGrama
 void LivroFisico::setPesoGrama(int p) {
     pesoGrama = p;
 }
@@ -22,7 +23,7 @@ void LivroFisico::setPesoGrama(int p) {
 int LivroFisico::getPesoGrama() const {
     return pesoGrama;
 }
-//tipocapa
+//tipoCapa
 void LivroFisico::setTipoCapa(const std::string& tc) {
     tipoCapa = tc;
 }
@@ -30,7 +31,7 @@ void LivroFisico::setTipoCapa(const std::string& tc) {
 std::string LivroFisico::getTipoCapa() const {
     return tipoCapa;
 }
-
+//quantidadeEstoque
 void LivroFisico::setQuantidadeEstoque(int q) {
     quantidadeEstoque = q;
 }

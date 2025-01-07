@@ -19,7 +19,7 @@ public:
       e depois inicializa os atributos específicos de "LivroDigital".
     */
 
-    LivroFisico(const std::string& t, const std::string& a, const std::string& i, int ano, const std::string& e, int valor, int p, std::string tc, int q) 
+    LivroFisico(const std::string& t, const std::string& a, const std::string& i, int ano, const std::string& e, int valor, int p, const std::string& tc, int q) 
         :Livro(t, a, i, ano, e, valor), pesoGrama(p), tipoCapa(tc), quantidadeEstoque(q) {
 
         }
