@@ -1,65 +1,39 @@
 #include <iostream>
 #include "Livro.h"
-
+#include "LivroFisico.h"
+#include "LivroDigital.h"
+#include "Usuario.h"
 
 using namespace std;
 
-// Classe derivada provisoria
-class LivroFiccao : public Livro {
+// Classe derivada simples para teste
+class UsuarioTeste : public Usuario {
 public:
-    LivroFiccao(const std::string& t, const std::string& a, const std::string& i, int ano, const std::string& e, int valor)
-        : Livro(t, a, i, ano, e, valor) {}
+    // Construtor
+    UsuarioTeste(const std::string& n, const std::string& c, const std::string& e, const std::string& t)
+        : Usuario(n, c, e, t) {}
 
+    // Implementação do método virtual puro
     void exibir() const override {
-        std::cout << "Título: " << titulo << "\n"
-                  << "Autor: " << autor << "\n"
-                  << "ISBN: " << isbn << "\n"
-                  << "Ano de Publicação: " << anoPublicacao << "\n"
-                  << "Editora: " << editora << "\n"
-                  << "Valor Diário: " << valorDiaria << "\n";
+        std::cout << "Nome: " << nome << "\n"
+                  << "CPF: " << cpf << "\n"
+                  << "Endereço: " << endereco << "\n"
+                  << "Telefone: " << telefone << "\n";
     }
 };
 
 int main(){
-
-// Criar um objeto Livro usando o construtor parametrizado
-    LivroFiccao meuLivro("O Senhor dos Anéis", "J.R.R. Tolkien", "978-3-16-148410-0", 1954, "HarperCollins", 10);
-
-    // Exibir os dados do livro usando os getters
-    std::cout << "Título: " << meuLivro.getTitulo() << "\n";
-    std::cout << "Autor: " << meuLivro.getAutor() << "\n";
-    std::cout << "ISBN: " << meuLivro.getISBN() << "\n";
-    std::cout << "Ano de Publicação: " << meuLivro.getAnoPublicacao() << "\n";
-    std::cout << "Editora: " << meuLivro.getEditora() << "\n";
-    std::cout << "Valor Diário: " << meuLivro.getValorDiaria() << "\n";
-
-    // Modificar alguns valores usando os setters
-    meuLivro.setTitulo("O Hobbit");
-    meuLivro.setValorDiaria(15);
-
-    // Exibir os dados novamente
-    std::cout << "Título Atualizado: " << meuLivro.getTitulo() << "\n";
-    std::cout << "Valor Diário Atualizado: " << meuLivro.getValorDiaria() << "\n";
-
-
-cout << "Hello World!" << endl;
-std::cin.get();
-return 0;
-
-};
-
-#include <iostream>
-#include "Livro.h"
-#include "LivroFisico.h"
-#include "LivroDigital.h"
-
-using namespace std;
-
-int main(){
-
+UsuarioTeste usuario("João Silva", "123.456.789-00", "Rua das Flores, 123", "(81) 99999-9999");
 LivroDigital HumanidadeD("Humanidade","Mateus","X4X8-345-YX8", 2024,"Digital.LTD",1, 400, "PNG", 45);
 LivroFisico HumanidadeF("Humanidade", "Mateus", "X4X8-345-YX8", 2024, "Caçula.LTD", 2, 1,"Dura", 3);
 
+std::cout << "Exibindo informações do usuário:\n";
+usuario.exibir();
+
+//Testando a função exibir
+HumanidadeD.exibir();
+
+//Testando os gets e sets manualmente
 cout << "Nome: " << HumanidadeF.getTitulo() << endl;
 cout << "Autor: " << HumanidadeF.getAutor() << endl;
 cout << "Numero de Serie: " << HumanidadeF.getISBN() << endl;
@@ -70,10 +44,18 @@ cout << "Peso em Kg: " << HumanidadeF.getPesoGrama() << endl;
 cout << "Tipo de Capa: " << HumanidadeF.getTipoCapa() << endl;
 cout << "Quantidade em Estoque: " << HumanidadeF.getQuantidadeEstoque() << endl;
 
-
+//Mudando com Sets
 HumanidadeD.setAutor("Marie Lu");
 HumanidadeF.setAutor("Ariano Suassuna");
+ usuario.setNome("Maria Oliveira");
+usuario.setCpf("987.654.321-00");
+usuario.setEndereco("Av. Brasil, 456");
+usuario.setTelefone("(11) 98888-8888");
 
+std::cout << "\nInformações atualizadas:\n";
+usuario.exibir();
+
+//Novas verificações
 cout << "Novo Autor Fisico: " << HumanidadeF.getAutor() <<endl;
 cout << "Novo Autor Digital: " << HumanidadeD.getAutor() <<endl;
 
