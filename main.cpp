@@ -5,26 +5,9 @@
 #include "Usuario.h"
 #include "Emprestimo.h"
 #include "Sistema.h"
+#include "LeitorComum.h"
 
 using namespace std;
-
-// Classe derivada simples para teste
-class LeitorComum : public Usuario {
-public:
-    LeitorComum(const std::string& n,
-                const std::string& c,
-                const std::string& e,
-                const std::string& t,
-                const std::string& s)
-        : Usuario(n, c, e, t, s) {}
-
-    void exibir() const override {
-        std::cout << "Leitor Comum -> Nome: " << nome
-                  << ", CPF: " << cpf
-                  << ", Endereco: " << endereco
-                  << ", Telefone: " << telefone << "\n";
-    }
-};
 
 int main(){
 
