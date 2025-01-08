@@ -16,6 +16,11 @@ Emprestimo::Emprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const s
     
 }
 
+//Destrutor:
+Emprestimo::~Emprestimo() {
+    // Nenhuma ação específica é necessária aqui, pois o destrutor não precisa liberar recursos diretamente.
+}
+
 void Emprestimo::finalizarEmprestimo(const std::string& dataRealDevolucao) {
     dataDevolucao = dataRealDevolucao;
     finalizado = true;

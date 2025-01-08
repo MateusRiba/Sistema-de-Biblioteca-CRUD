@@ -58,9 +58,9 @@ bool Sistema::removerLivroPorISBN(const std::string& isbn) {
     return false;
 }
 
-bool Sistema::removerLivroPorTitulo(const std::string& isbn) {
+bool Sistema::removerLivroPorTitulo(const std::string& titulo) {
     for (auto it = livros.begin(); it != livros.end(); ++it) {
-        if ((*it)->getTitulo() == isbn) {
+        if ((*it)->getTitulo() == titulo) {
             delete *it;
             livros.erase(it);
             return true;
