@@ -13,6 +13,21 @@ void LivroFisico::exibir() const {
               << "Quantidade em Estoque: " << quantidadeEstoque << "\n";
 }
 
+//Incremento e Decremento do estoque
+
+void LivroFisico::aumentarEstoque() {
+    quantidadeEstoque ++;
+
+}
+void LivroFisico::diminuirEstoque() {
+    if(quantidadeEstoque > 0){
+        quantidadeEstoque --;
+    } else {
+        std::cout << "Esse livro não está disponivel" << std::endl;
+    }
+
+}
+
 // Sets e Gets
 
 //pesoGrama

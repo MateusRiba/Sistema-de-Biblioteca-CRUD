@@ -29,6 +29,10 @@ public:
     */
     void exibir() const override;
 
+    //Metodo de incremento e decremento de estoque
+    void diminuirEstoque();
+    void aumentarEstoque();
+
     // Métodos específicos (getters e setters)
     void setPesoGrama(int p);
     int getPesoGrama() const;

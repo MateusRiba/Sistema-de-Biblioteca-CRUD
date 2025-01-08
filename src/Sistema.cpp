@@ -1,6 +1,7 @@
 #include "Sistema.h"
 #include "Usuario.h"
 #include "Livro.h"
+#include "LivroFisico.h"
 #include "Emprestimo.h"
 
 #include <iostream> 
@@ -58,9 +59,9 @@ bool Sistema::removerLivroPorISBN(const std::string& isbn) {
     return false;
 }
 
-bool Sistema::removerLivroPorTitulo(const std::string& isbn) {
+bool Sistema::removerLivroPorTitulo(const std::string& titulo) {
     for (auto it = livros.begin(); it != livros.end(); ++it) {
-        if ((*it)->getTitulo() == isbn) {
+        if ((*it)->getTitulo() == titulo) {
             delete *it;
             livros.erase(it);
             return true;
@@ -109,14 +110,29 @@ Livro* Sistema::buscarLivroPorTitulo(const std::string& titulo) const {
   Cria e armazena um objeto Emprestimo, ligando um Usuario e um Livro.
   - Decrementa estoque se for LivroFisico, por exemplo (opcional).
 */
-void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) 
-{
+void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) {
+
+//logica para diminuir o estoque se o livro for fisico
+    auto* livrofisico = dynamic_cast<LivroFisico*>(l); //Aqui estou tentando converter l para um livroFisico, nse não for possivel (então é um livroDigital)
+
+    if (livrofisico) {
+        int estoqueAtual = livrofisico->getQuantidadeEstoque();
+        if (estoqueAtual <= 0) {
+            
+            std::cout << "Nao ha estoque disponivel para esse livro fisico!\n";
+            return; 
+
+        } else {
+            // Decrementa o estoque em 1
+            livrofisico->diminuirEstoque();
+            std::cout << "Emprestimo: Estoque decremetado (agora = " << livrofisico->getQuantidadeEstoque() << ")\n";
+        }
+    }
+
+
     // Cria um novo emprestimo "por valor" e adiciona ao array
     Emprestimo emp(u, l, dataEmp, dataDev);
     emprestimos.push_back(emp);
-
-    // Se l for um LivroFisico é necessário decrementar o estoque (implementação futura):
-    // Exemplo possivel dynamic_cast<LivroFisico*>(l)->decrementarEstoque(1);
 }
 
 /*
@@ -148,8 +164,12 @@ void Sistema::encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const
             e.getLivro()->getTitulo() == tituloLivro) 
         {
             e.finalizarEmprestimo(dataRealDevolucao);
-            // Se for livro físico, é necessário incremente o estoque de volta, etc.
-            // exemplo dynamic_cast<LivroFisico*>( e.getLivro() )->incrementarEstoque(1);
+            
+            if (LivroFisico* lf = dynamic_cast<LivroFisico*>(e.getLivro())) {
+                lf->aumentarEstoque();  // ou lf->diminuirEstoque(-1); etc.
+                std::cout << "Estoque incrementado (agora = " << lf->getQuantidadeEstoque() << std::endl;
+            }
+            
             break;
         }
     }
@@ -167,6 +187,7 @@ void Sistema::listarLivros() const {
     std::cout << "=== Lista de Livros ===\n";
     for (Livro* l : livros) {
         l->exibir();
+        std::cout << std::endl;
     }
 }
 
