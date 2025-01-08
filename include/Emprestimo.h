@@ -19,6 +19,9 @@ private:
     std::string dataEmprestimo;  
     std::string dataDevolucao;   
     
+    //Indica o custo do emprestimo que será calculado imediatamente na sua criação
+    int custo;
+
     //Indica se o empréstimo já foi encerrado
     bool finalizado;
 
@@ -65,6 +68,9 @@ public:
     // Retorna true se o empréstimo já foi finalizado (livro devolvido).
     bool isFinalizado() const;
     void setFinalizado(bool status);
+
+    int getCusto() const;
+    void setCusto(int custo);
 
 };
 
