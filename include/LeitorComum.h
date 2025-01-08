@@ -27,9 +27,9 @@ public:
 
     // Métodos específicos (Nesse caso, sem getters e setters pois não temos atributos novos)
 
-    void buscarLivros()
-    void alugarLivro()
-    void devolverLivro()
+    void buscarLivros();
+    void alugarLivro();
+    void devolverLivro();
 
 };
 

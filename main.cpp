@@ -4,6 +4,7 @@
 #include "LivroDigital.h"
 #include "Usuario.h"
 #include "Emprestimo.h"
+#include "LeitorComum.h"
 
 using namespace std;
 
@@ -24,9 +25,11 @@ public:
 };
 
 int main(){
-UsuarioTeste usuario("João Silva", "123.456.789-00", "Rua das Flores, 123", "(81) 99999-9999", "1230");
+LeitorComum usuario("João Silva", "123.456.789-00", "Rua das Flores, 123", "(81) 99999-9999", "1230");
 LivroDigital HumanidadeD("Humanidade","Mateus","X4X8-345-YX8", 2024,"Digital.LTD",1, 400, "PNG", 45);
 LivroFisico HumanidadeF("Humanidade", "Mateus", "X4X8-345-YX8", 2024, "Caçula.LTD", 2, 1,"Dura", 3);
+
+usuario.exibir();
 
 //Criação de um Emprestimo:
 Emprestimo emprestimo1(&usuario, &HumanidadeD, "01/02/2025", "15/02/2025");
