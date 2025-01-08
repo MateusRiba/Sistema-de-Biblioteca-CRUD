@@ -2,6 +2,7 @@
 #include "Usuario.h"
 #include "Livro.h"
 #include "LivroFisico.h"
+#include "LivroDigital.h"
 #include "Emprestimo.h"
 
 #include <iostream> 
@@ -177,6 +178,92 @@ void Sistema::encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const
             break;
         }
     }
+}
+
+//Metodos de Edição
+//Usuario
+bool Sistema::atualizarUsuario(const std::string& cpf,const std::string& novoNome,const std::string& novoEndereco,const std::string& novoTelefone, const std::string& novaSenha)
+{
+    for (Usuario* u : usuarios) {
+        if (u->getCpf() == cpf) {
+            //setters do usuario:
+            u->setNome(novoNome);
+            u->setEndereco(novoEndereco);
+            u->setTelefone(novoTelefone);
+            u->setSenha(novaSenha);
+            return true;
+        }
+    }
+    return false; // Não encontrado
+}
+
+//Livro
+bool Sistema::atualizarLivro(const std::string& isbn,
+                             const std::string& novoTitulo,
+                             const std::string& novoAutor,
+                             const std::string& novaEditora,
+                             double novoValorDiaria,
+                             int novoPesoGrama,
+                             const std::string& novaCapa,
+                             int novoEstoque,
+                             int novoTamanhoArquivo,
+                             const std::string& novoFormatoArquivo,
+                             int novaLicensaDigital)
+{
+    for (Livro* l : livros) {
+        if (l->getISBN() == isbn) {
+            // Atributos comuns da classe base
+            l->setTitulo(novoTitulo);
+            l->setAutor(novoAutor);
+            l->setEditora(novaEditora);
+            l->setValorDiaria(novoValorDiaria);
+
+            // Agora, testa se é um LivroFisico
+            if (auto* lf = dynamic_cast<LivroFisico*>(l)) {
+                // Se novoPesoGrama != -1, então set
+                if (novoPesoGrama != -1) {
+                    lf->setPesoGrama(novoPesoGrama);
+                }
+                if (!novaCapa.empty()) {
+                    lf->setTipoCapa(novaCapa);
+                }
+                if (novoEstoque != -1) {
+                    lf->setQuantidadeEstoque(novoEstoque);
+                }
+            }
+            // Se for um LivroDigital
+            else if (auto* ld = dynamic_cast<LivroDigital*>(l)) {
+                if (novoTamanhoArquivo != -1) {
+                    ld->setTamanhoArquivoKB(novoTamanhoArquivo);
+                }
+                if (!novoFormatoArquivo.empty()) {
+                    ld->setFormatoArquivo(novoFormatoArquivo);
+                }
+                if(novaLicensaDigital!= -1) {
+                    ld->setLicensaDigital(novaLicensaDigital);
+                }
+            }
+            return true; // Atualizado com sucesso
+        }
+    }
+    return false; // Não encontrou
+}
+
+//Emprestimo
+bool Sistema::atualizarEmprestimo(const std::string& cpfUsuario,const std::string& isbnLivro,const std::string& novaDataEmp,const std::string& novaDataDev, int novoCusto) // <-- Recebe custo
+{
+    for (Emprestimo &e : emprestimos) {
+        if (!e.isFinalizado() &&
+            e.getUsuario()->getCpf() == cpfUsuario &&
+            e.getLivro()->getISBN() == isbnLivro) 
+        {
+            e.setDataEmprestimo(novaDataEmp);
+            e.setDataDevolucao(novaDataDev);
+            e.setCusto(novoCusto); 
+            return true;
+        }
+    }
+    return false;
 }
 
 // Exibir listagens:

@@ -48,6 +48,30 @@ public:
 
     // Métodos de Edição 
 
+    //Atualiza dados do usuario (recebe CPF)
+    bool atualizarUsuario(const std::string& cpf,const std::string& novoNome,const std::string& novoEndereco,const std::string& novoTelefone, const std::string& novaSenha);
+
+    //Atualiza dados de um livro (Recebe ISBN)
+    bool atualizarLivro(const std::string& isbn,
+                    const std::string& novoTitulo,
+                    const std::string& novoAutor,
+                    const std::string& novaEditora,
+                    double novoValorDiaria,
+                    // Parâmetros específicos de físico
+                    int novoPesoGrama = -1,
+                    const std::string& novaCapa = "",
+                    int novoEstoque = -1,
+                    // Parâmetros específicos de digital
+                    int novoTamanhoArquivo = -1, 
+                    const std::string& novoFormatoArquivo = "",
+                    int novaLicensaDigital = -1
+                    //Valores default (-1 ou "") indicam que não quero alterar esse atributo
+);
+
+    //Atualiza dados de um empréstimo (Recebe CPF + ISBN)
+    bool atualizarEmprestimo(const std::string& cpfUsuario,const std::string& isbnLivro,const std::string& novaDataEmp,const std::string& novaDataDev, int novoCusto);
+
+
     // Métodos de listar
     void listarUsuarios() const;
     void listarLivros() const;

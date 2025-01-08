@@ -40,7 +40,7 @@ std::string Usuario::getTelefone() const {
 
 // Senha
 void Usuario::setSenha(const std::string& s) {
-    telefone = s;
+    senha = s;
 }
 
 std::string Usuario::getSenha() const {

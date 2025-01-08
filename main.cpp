@@ -60,12 +60,91 @@ if (livroBuscado) {
     std::cout << "Livro nao encontrado!\n";
 }
 
+// -- TESTE de ATUALIZAR USUARIO --
+
+// Antes: "Maria Souza", "Av. B, 456", ...
+std::cout << "\n--- ATUALIZANDO Usuario com CPF \"555.666.777-88\" ---\n";
+
+// Chamando atualizarUsuario(cpf, novoNome, novoEnd, novoTel, novaSenha)
+bool atualizouU = sis.atualizarUsuario("555.666.777-88",
+                                       "Maria Admin",
+                                       "Av. Central, 1000",
+                                       "(81)97777-7777",
+                                       "novaSenhaAdmin");
+if (atualizouU) {
+    std::cout << "Usuario atualizado com sucesso!\n";
+} else {
+    std::cout << "Falha ao atualizar usuario (nao encontrado?)\n";
+}
+
+// Verificar se mudou:
+Usuario* usuarioAtt = sis.buscarUsuarioPorCPF("555.666.777-88");
+if (usuarioAtt) {
+    std::cout << "Dados apos atualizacao:\n";
+    usuarioAtt->exibir();  // deve mostrar "Maria Admin", "Av. Central, 1000" etc.
+}
+
+// -- TESTE de ATUALIZAR LIVRO --
+std::cout << "\n--- ATUALIZANDO Livro com ISBN \"ABC-123\" ---\n";
+
+// Parâmetros do atualizarLivro (veja a ordem exata que voce definiu!)
+// (isbn, novoTitulo, novoAutor, novaEditora, novoValorDiaria, 
+//  novoPesoGrama, novaCapa, novoEstoque, novoTamanhoArquivo, 
+//  novoFormatoArquivo, novaLicensaDigital)
+bool atualizouL = sis.atualizarLivro("ABC-123",
+                                     "C++ Intermediario",    // Titulo
+                                     "Bjarne Stroustrup",    // Autor
+                                     "OutraEditoraXYZ",      // Editora
+                                     2.5,                    // Valor diaria
+                                     999,                    // Peso gramas (LivroFisico)
+                                     "Capa Dura Reforcada",  // Tipo de capa
+                                     10,                     // Estoque
+                                     -1,  // TamanhoArquivo (nao alterado, pois -1)
+                                     "",  // FormatoArquivo (vazio)
+                                     -1   // LicensaDigital (vazio)
+);
+
+if (atualizouL) {
+    std::cout << "Livro atualizado com sucesso!\n";
+} else {
+    std::cout << "Falha ao atualizar livro (nao encontrado?)\n";
+}
+
+// Verificar resultado
+Livro* livroAtt = sis.buscarLivroPorISBN("ABC-123");
+if (livroAtt) {
+    std::cout << "Dados do livro apos atualizacao:\n";
+    livroAtt->exibir();  
+    // Se for LivroFisico, deve mostrar peso=999, capa="Capa Dura Reforcada", estoque=10
+}
+
+
+
 // Criar Emprestimos
 std::cout << "\n--- CRIANDO Emprestimos ---\n";
 sis.realizarEmprestimo(u1, l1, "01/02/2025", "10/02/2025");
 sis.realizarEmprestimo(u2, l2, "02/02/2025", "12/02/2025");
 
 // Listar emprestimos
+sis.listarEmprestimos();
+
+std::cout << "\n--- ATUALIZANDO Emprestimo (CPF \"111.222.333-44\", ISBN \"ABC-123\") ---\n";
+
+// Parametros: (cpfUsuario, isbnLivro, novaDataEmp, novaDataDev, marcarFinalizado, novoCusto)
+bool attEmp = sis.atualizarEmprestimo("111.222.333-44", 
+                                      "ABC-123", 
+                                      "02/02/2025",  // nova dataEmp
+                                      "15/02/2025",  // nova dataDev
+                                       
+                                      50 // novo custo, por ex.
+);
+if (attEmp) {
+    std::cout << "Emprestimo atualizado com sucesso!\n";
+} else {
+    std::cout << "Falha ao atualizar emprestimo (nao encontrado ou ja finalizado?)\n";
+}
+
+// Verifique listagem apos a atualizacao
 sis.listarEmprestimos();
 
 // Encerrar primeiro emprestimo (pelo CPF e ISBN)

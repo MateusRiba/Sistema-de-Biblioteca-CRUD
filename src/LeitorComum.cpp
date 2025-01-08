@@ -7,7 +7,8 @@ void LeitorComum::exibir() const {
     std::cout << "Nome: " << nome << "\n"
               << "CPF: " << cpf << "\n"
               << "Endereço: " << endereco << "\n"
-              << "Telefone: " << telefone << "\n";
+              << "Telefone: " << telefone << "\n"
+              << "Senha: " << senha << "\n";
 }
 
 void LeitorComum::buscarLivros() {
