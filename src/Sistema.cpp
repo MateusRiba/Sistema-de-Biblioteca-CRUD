@@ -148,8 +148,12 @@ void Sistema::encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std
             e.getLivro()->getISBN() == isbnLivro) 
         {
             e.finalizarEmprestimo(dataRealDevolucao);
-            // Se for livro físico é necessário incrementar o estoque de volta, etc.
-            // exemplo dynamic_cast<LivroFisico*>( e.getLivro() )->incrementarEstoque(1);
+            
+            if (LivroFisico* lf = dynamic_cast<LivroFisico*>(e.getLivro())) {
+                lf->aumentarEstoque();  // ou lf->diminuirEstoque(-1); etc.
+                std::cout << "Estoque incrementado (agora = " << lf->getQuantidadeEstoque() << std::endl;
+            }
+
             break;
         }
     }
