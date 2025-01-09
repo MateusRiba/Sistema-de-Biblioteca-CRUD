@@ -43,8 +43,8 @@ public:
     // Métodos de empréstimo
     void realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev);
 
-    void encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std::string& isbnLivro, const std::string& dataRealDevolucao);
-    void encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const std::string& tituloLivro, const std::string& dataRealDevolucao);
+    bool encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std::string& isbnLivro, const std::string& dataRealDevolucao);
+    bool encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const std::string& tituloLivro, const std::string& dataRealDevolucao);
 
     // Métodos de Edição 
 

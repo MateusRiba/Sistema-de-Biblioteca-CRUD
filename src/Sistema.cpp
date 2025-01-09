@@ -140,7 +140,7 @@ void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEm
   Procura no array de Emprestimos qual corresponde ao CPF e ISBN, ou Nome e Titulo 
   e chama finalizarEmprestimo(dataRealDevolucao).
 */
-void Sistema::encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std::string& isbnLivro, const std::string& dataRealDevolucao) 
+bool Sistema::encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std::string& isbnLivro, const std::string& dataRealDevolucao) 
 {
     for (Emprestimo &e : emprestimos) {
         //verifica se e.usuario->getCpf() == cpfUsuario e e.livro->getISBN() == isbnLivro
@@ -155,12 +155,14 @@ void Sistema::encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std
                 std::cout << "Estoque incrementado (agora = " << lf->getQuantidadeEstoque() << std::endl;
             }
 
-            break;
+            return true;
         }
     }
+    std::cout << "Empréstimo não encontrado ou já finalizado.\n";
+    return false;
 }
 
-void Sistema::encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const std::string& tituloLivro, const std::string& dataRealDevolucao) 
+bool Sistema::encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const std::string& tituloLivro, const std::string& dataRealDevolucao) 
 {
     for (Emprestimo &e : emprestimos) {
         //verifica se e.usuario->getCpf() == cpfUsuario e e.livro->getISBN() == isbnLivro
@@ -175,9 +177,11 @@ void Sistema::encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const
                 std::cout << "Estoque incrementado (agora = " << lf->getQuantidadeEstoque() << std::endl;
             }
             
-            break;
+            return true;
         }
     }
+    std::cout << "Empréstimo não encontrado ou já finalizado.\n";
+    return false;
 }
 
 //Metodos de Edição
