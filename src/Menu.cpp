@@ -12,10 +12,14 @@
 
 Sistema sis;
 
-// Vetores para armazenar os livros
-std::vector<LivroFisico> livrosFisicos;
-std::vector<LivroDigital> livrosDigitais;
+//Define o Administrador
+Usuario* admin = new Administrador("Admin", "701.678.104-64", "Rua Senador Fabio de Barros 163", "081 99999-6117", "1230", &sis);
 
+struct Inicializador { //Adiciona o admin
+    Inicializador() {
+        sis.adicionarUsuario(admin);
+    }
+} inicializador;
 
 // Função para limpar o terminal
 void limparTerminal() {
@@ -26,10 +30,11 @@ void limparTerminal() {
     #endif
 }
 
-
+//Funções de Cadastro
 void cadastrarLivroFisico() {
     std::string titulo, autor, isbn, editora, tipoCapa;
-    int ano, valorDiaria, pesoGrama, quantidadeEstoque;
+    double valorDiaria; // Alterado para double
+    int ano, pesoGrama, quantidadeEstoque;
 
     std::cout << "=== Cadastro de Livro Físico ===\n";
     std::cout << "Título: ";
@@ -51,13 +56,16 @@ void cadastrarLivroFisico() {
     std::cout << "Quantidade em Estoque: ";
     std::cin >> quantidadeEstoque;
 
-    livrosFisicos.emplace_back(titulo, autor, isbn, ano, editora, valorDiaria, pesoGrama, tipoCapa, quantidadeEstoque);
+    LivroFisico* livroFisico = new LivroFisico(titulo, autor, isbn, ano, editora, valorDiaria, pesoGrama, tipoCapa, quantidadeEstoque);
+    sis.adicionarLivroFisico(livroFisico);
+    
     std::cout << "Livro físico cadastrado com sucesso!\n";
 }
 
 void cadastrarLivroDigital() {
     std::string titulo, autor, isbn, editora, formatoArquivo;
-    int ano, valorDiaria, tamanhoArquivoKB, licencaDigital;
+    double valorDiaria; // Alterado para double
+    int ano, tamanhoArquivoKB, licencaDigital;
 
     std::cout << "=== Cadastro de Livro Digital ===\n";
     std::cout << "Título: ";
@@ -79,13 +87,15 @@ void cadastrarLivroDigital() {
     std::cout << "Licença Digital: ";
     std::cin >> licencaDigital;
 
-    livrosDigitais.emplace_back(titulo, autor, isbn, ano, editora, valorDiaria, tamanhoArquivoKB, formatoArquivo, licencaDigital);
+    LivroDigital* livroDigital = new LivroDigital(titulo, autor, isbn, ano, editora, valorDiaria, tamanhoArquivoKB, formatoArquivo, licencaDigital);
+    sis.adicionarLivroDigital(livroDigital);
+
     std::cout << "Livro digital cadastrado com sucesso!\n";
 }
 
+//Função de exibição de Livro
 void exibirMenuLogin(){
     
-
     int opcao;
 
     std::string nome, cpf, endereco, telefone, senha;
@@ -101,9 +111,11 @@ void exibirMenuLogin(){
             std::getline(std::cin >> std::ws, cpf);
             std::cout << "Senha: ";
             std::getline(std::cin >> std::ws, senha);
-            sis.buscarUsuarioPorCPF(cpf);
-            if(sis.buscarUsuarioPorCPF(cpf) == nullptr){
-                std::cout << "Usuario nao encontrado!\n";
+            
+            u1 = sis.autenticarUsuarioCPFSenha(cpf,senha);
+            
+            if(u1 == nullptr){
+                std::cout <<"Credenciais inválidas ou usuário não encontrado!\n";
                 std::cout<<"Pressione qualquer tecla para continuar...";
                 std::cin.ignore();
                 limparTerminal();
@@ -111,9 +123,19 @@ void exibirMenuLogin(){
                 return;
             }
             std::cout << "Login efetuado com sucesso!\n";
-            std::cout << "Bem-vindo, " << sis.buscarUsuarioPorCPF(cpf)->getNome() << "!\n";
+            std::cout << "Bem-vindo, " << u1->getNome() << "!\n";
             std::cout<<"Pressione qualquer tecla para continuar...";
             std::cin.ignore();
+
+            // Identifica o tipo de usuário e direciona para a interface adequada
+            if(sis.isAdministrador(u1)){
+                // Chama a interface do Administrador
+                interfaceAdministrador(sis, dynamic_cast<Administrador*>(u1));
+            }
+            else{
+                // Chama a interface do Leitor Comum
+                interfaceLeitorComum(sis, dynamic_cast<LeitorComum*>(u1));
+            }
 
             break;
         case 2:
@@ -139,6 +161,10 @@ void exibirMenuLogin(){
             break;
         default:
             std::cout << "Opção inválida! Tente novamente.\n";
+            std::cout << "Pressione Enter para continuar...";
+            std::cin.ignore();
+            limparTerminal();
+            exibirMenuLogin();
             break;
     }
     limparTerminal();
@@ -146,23 +172,7 @@ void exibirMenuLogin(){
 
 }
 
-void listarLivrosFisicos() {
-    std::cout << "=== Livros Físicos ===\n";
-    for (const auto& livro : livrosFisicos) {
-        livro.exibir();
-        std::cout << "----------------------\n";
-    }
-}
-
-void listarLivrosDigitais() {
-    std::cout << "=== Livros Digitais ===\n";
-    for (const auto& livro : livrosDigitais) {
-        livro.exibir();
-        std::cout << "----------------------\n";
-    }
-}
-
-void exibirMenuPrincipal() {
+void interfaceAdministrador() {
     std::cout << "\n=== Sistema de Gerenciamento de Livros ===\n";
     std::cout << "1. Cadastrar Livro Físico\n";
     std::cout << "2. Cadastrar Livro Digital\n";
@@ -172,7 +182,7 @@ void exibirMenuPrincipal() {
     std::cout << "0. Sair\n";
 }
 
-void gerenciarLivros() {
+void interfaceLeitorComum() {
     int opcao = 0;
 
     do {
@@ -193,10 +203,10 @@ void gerenciarLivros() {
                 cadastrarLivroDigital();
                 break;
             case 3:
-                listarLivrosFisicos();
+                sis.listarLivrosFisicos();
                 break;
             case 4:
-                listarLivrosDigitais();
+                sis.listarLivrosDigitais();
                 break;
             case 0:
                 std::cout << "Voltando ao menu principal...\n";
