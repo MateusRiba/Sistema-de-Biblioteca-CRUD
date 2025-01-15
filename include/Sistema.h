@@ -49,7 +49,7 @@ public:
     Livro* buscarLivroPorTitulo(const std::string& titulo) const;
 
     // Métodos de empréstimo
-    void realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev);
+    bool realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev);
 
     bool encerrarEmprestimoCpfIsbn(const std::string& cpfUsuario, const std::string& isbnLivro, const std::string& dataRealDevolucao);
     bool encerrarEmprestimoNomeTitulo(const std::string& nomeUsuario, const std::string& tituloLivro, const std::string& dataRealDevolucao);

@@ -142,11 +142,9 @@ Livro* Sistema::buscarLivroPorTitulo(const std::string& titulo) const {
     return nullptr; 
 }
 
-/*
-  Cria e armazena um objeto Emprestimo, ligando um Usuario e um Livro.
-  - Decrementa estoque se for LivroFisico, por exemplo (opcional).
-*/
-void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) {
+  //Cria e armazena um objeto Emprestimo, ligando um Usuario e um Livro.
+  
+bool Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) {
 
 //logica para diminuir o estoque se o livro for fisico
     auto* livrofisico = dynamic_cast<LivroFisico*>(l); //Aqui estou tentando converter l para um livroFisico, nse não for possivel (então é um livroDigital)
@@ -169,6 +167,9 @@ void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEm
     // Cria um novo emprestimo "por valor" e adiciona ao array
     Emprestimo emp(u, l, dataEmp, dataDev);
     emprestimos.push_back(emp);
+
+    std::cout << "Empréstimo realizado com sucesso!\n";
+    return true;
 }
 
 /*
