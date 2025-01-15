@@ -8,33 +8,18 @@
 
 using namespace std;
 
+extern Sistema sis;
+extern Usuario* admin;
+
+
 int main(){
 
-    exibirMenuLogin();
-
-    int opcao;
-
-    do{
-        exibirMenuPrincipal();
-        cout << "Escolha uma opcao: ";
-        cin >> opcao;
-
-        switch(opcao){
-            case 1:
-                gerenciarLivros();
-                break;
-            case 2:
-                gerenciarUsuarios();
-                break;
-            case 3:
-                cout << "Saindo do Sistema...\n";
-                break;
-            default:
-                cout << "Opção inválida! Tente novamente.\n";
-                break;
-        }
-    } while (opcao != 3);
-   
-
+    // Chama a função de gerenciamento de usuários
+    gerenciarUsuarios();
+    
+    // Opcional: Após o teste, você pode listar os usuários para verificar as alterações
+    std::cout << "\n=== Lista de Usuários após o Gerenciamento ===\n";
+    sis.listarUsuarios();
+    
     return 0;
 }
