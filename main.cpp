@@ -15,11 +15,11 @@ extern Usuario* admin;
 int main(){
 
     // Chama a função de gerenciamento de usuários
-    gerenciarUsuarios();
+    gerenciarLivros();
     
     // Opcional: Após o teste, você pode listar os usuários para verificar as alterações
-    std::cout << "\n=== Lista de Usuários após o Gerenciamento ===\n";
+    std::cout << "\n=== Lista de Livros após o Gerenciamento ===\n";
     sis.listarUsuarios();
-    
+    sis.listarLivros();
     return 0;
 }

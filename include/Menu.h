@@ -21,6 +21,7 @@ struct ResultadoLogin {
 // Declaração das funções
 ResultadoLogin exibirMenuLogin();
 void gerenciarUsuarios();
+void gerenciarLivros();
 void exibirInterfaceAdministrador(Sistema& sis, Administrador* admin);
 void exibirInterfaceLeitorComum();
 
