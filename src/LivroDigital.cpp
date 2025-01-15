@@ -10,7 +10,8 @@ void LivroDigital::exibir() const {
               << "Valor Diário: " << valorDiaria << "\n"
               << "Tamanho do Arquivo (KB): " << tamanhoArquivoKB << "\n"
               << "Formato do Arquivo: " << formatoArquivo << "\n"
-              << "Licença Digital: " << licensaDigital << "\n";
+              << "Licença Digital: " << licensaDigital << "\n"
+              << "/n";
 }
 
 // Sets e Gets

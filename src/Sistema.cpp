@@ -4,6 +4,7 @@
 #include "LivroFisico.h"
 #include "LivroDigital.h"
 #include "Emprestimo.h"
+#include "Administrador.h"
 
 #include <iostream> 
 
@@ -25,6 +26,16 @@ void Sistema::adicionarUsuario(Usuario* usuario) {
 
 void Sistema::adicionarLivro(Livro* livro) {
     livros.push_back(livro);
+}
+
+void Sistema::adicionarLivroFisico(LivroFisico* livroFisico) {
+    livrosFisicos.push_back(livroFisico); 
+    adicionarLivro(livroFisico);           // Adiciona ao vetor geral
+}
+
+void Sistema::adicionarLivroDigital(LivroDigital* livroDigital) {
+    livrosDigitais.push_back(livroDigital); 
+    adicionarLivro(livroDigital);           // Adiciona ao vetor geral
 }
 
 bool Sistema::removerUsuarioPorCPF(const std::string& cpf) {
@@ -54,6 +65,30 @@ bool Sistema::removerLivroPorISBN(const std::string& isbn) {
         if ((*it)->getISBN() == isbn) {
             delete *it;
             livros.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Sistema::removerLivroFisicoPorISBN(const std::string& isbn) {
+    for (auto it = livrosFisicos.begin(); it != livrosFisicos.end(); ++it) {
+        if ((*it)->getISBN() == isbn) {
+            LivroFisico* livroFisico = *it;
+            removerLivroPorISBN(isbn); // Remove do vetor geral e deleta o objeto
+            livrosFisicos.erase(it);    // Remove do vetor específico
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Sistema::removerLivroDigitalPorISBN(const std::string& isbn) {
+    for (auto it = livrosDigitais.begin(); it != livrosDigitais.end(); ++it) {
+        if ((*it)->getISBN() == isbn) {
+            LivroDigital* livroDigital = *it;
+            removerLivroPorISBN(isbn); // Remove do vetor geral e deleta o objeto
+            livrosDigitais.erase(it);  // Remove do vetor específico
             return true;
         }
     }
@@ -107,11 +142,9 @@ Livro* Sistema::buscarLivroPorTitulo(const std::string& titulo) const {
     return nullptr; 
 }
 
-/*
-  Cria e armazena um objeto Emprestimo, ligando um Usuario e um Livro.
-  - Decrementa estoque se for LivroFisico, por exemplo (opcional).
-*/
-void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) {
+  //Cria e armazena um objeto Emprestimo, ligando um Usuario e um Livro.
+  
+bool Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEmp, const std::string& dataDev) {
 
 //logica para diminuir o estoque se o livro for fisico
     auto* livrofisico = dynamic_cast<LivroFisico*>(l); //Aqui estou tentando converter l para um livroFisico, nse não for possivel (então é um livroDigital)
@@ -134,6 +167,9 @@ void Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEm
     // Cria um novo emprestimo "por valor" e adiciona ao array
     Emprestimo emp(u, l, dataEmp, dataDev);
     emprestimos.push_back(emp);
+
+    std::cout << "Empréstimo realizado com sucesso!\n";
+    return true;
 }
 
 /*
@@ -270,6 +306,23 @@ bool Sistema::atualizarEmprestimo(const std::string& cpfUsuario,const std::strin
     return false;
 }
 
+//Autenticação de Usuario
+Usuario* Sistema::autenticarUsuarioCPFSenha(const std::string& cpf, const std::string& senha) const {
+    for(const Usuario* u : usuarios) {
+        if(u->getCpf() == cpf && u->getSenha() == senha) {
+            
+            std::cout << "Autenticação bem-sucedida! Bem-vindo, " << u->getNome() << "!\n";
+            return const_cast<Usuario*>(u); // ???
+        }
+    }
+    std::cout << "Erro: CPF ou senha inválidos. Tente novamente.\n";
+    return nullptr;
+}
+
+bool Sistema::isAdministrador(const Usuario* usuario) const {
+    return dynamic_cast<const Administrador*>(usuario) != nullptr;
+}
+
 // Exibir listagens:
 void Sistema::listarUsuarios() const {
     std::cout << "=== Lista de Usuarios ===\n";
@@ -285,6 +338,23 @@ void Sistema::listarLivros() const {
         std::cout << std::endl;
     }
 }
+
+void Sistema::listarLivrosFisicos() const {
+    std::cout << "=== Lista de Livros Físicos ===\n";
+    for (const LivroFisico* lf : livrosFisicos) {
+        lf->exibir();
+        std::cout << std::endl;
+    }
+}
+
+void Sistema::listarLivrosDigitais() const {
+    std::cout << "=== Lista de Livros Digitais ===\n";
+    for (const LivroDigital* ld : livrosDigitais) {
+        ld->exibir();
+        std::cout << std::endl;
+    }
+}
+
 
 void Sistema::listarEmprestimos() const {
     std::cout << "=== Lista de Emprestimos ===\n";
