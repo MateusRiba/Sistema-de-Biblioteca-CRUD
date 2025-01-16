@@ -154,7 +154,7 @@ bool Sistema::realizarEmprestimo(Usuario* u, Livro* l, const std::string& dataEm
         if (estoqueAtual <= 0) {
             
             std::cout << "Nao ha estoque disponivel para esse livro fisico!\n";
-            return; 
+            return false; 
 
         } else {
             // Decrementa o estoque em 1
