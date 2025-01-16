@@ -22,8 +22,11 @@ struct ResultadoLogin {
 ResultadoLogin exibirMenuLogin();
 void gerenciarUsuarios();
 void gerenciarLivros();
+void visualizarLivros();
+void pesquisarLivro(LeitorComum* leitor);
+void gerenciarAluguel(LeitorComum* leitor);
 void exibirInterfaceAdministrador(Sistema& sis, Administrador* admin);
-void exibirInterfaceLeitorComum();
+void exibirInterfaceLeitorComum(Sistema& sis, LeitorComum* leitor);
 
 extern Sistema sis;
 extern Usuario* admin;

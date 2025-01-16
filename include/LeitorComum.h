@@ -2,12 +2,17 @@
 #define LEITORCOMUM_H
 
 #include "Usuario.h"
+#include "Emprestimo.h"
+#include "Livro.h"
 #include <string>
 #include <iostream>
+#include <vector>
 
 class LeitorComum : public Usuario {
 private:
-    // Atributos específicos de um LeitorComum (Nada especifico)
+    // Atributos específicos de um LeitorComum 
+  std::vector<Emprestimo> emprestimosDoLeitor;
+
 public:
     /*
       Construtor que chama o construtor base "Usuario(const std::string&, ...)"
@@ -27,9 +32,10 @@ public:
 
     // Métodos específicos (Nesse caso, sem getters e setters pois não temos atributos novos)
 
-    void buscarLivros();
-    void alugarLivro();
-    void devolverLivro();
+    void adicionarEmprestimo(const Emprestimo& emp); 
+    void listarEmprestimos() const;
+    bool encerrarEmprestimo(const std::string& isbnLivro, const std::string& dataDevolucao);
+
 
 };
 

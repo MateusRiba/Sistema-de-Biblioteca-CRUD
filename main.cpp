@@ -1,25 +1,45 @@
+#include "Menu.h"            
+#include "LeitorComum.h"     // Precisamos dessa classe para poder dynamic_cast
+#include "Administrador.h"   // Precisamos dessa classe para usar dynamic_cast
 #include <iostream>
-#include "LivroFisico.h"
-#include "LivroDigital.h"
-#include "LeitorComum.h"
-#include "Administrador.h"
-#include "Sistema.h"
-#include "Menu.h"
 
-using namespace std;
-
+// Declaração externa das variáveis globais definidas em Menu.cpp
 extern Sistema sis;
 extern Usuario* admin;
 
+int main() {
+    while(true) {
+        // exibirMenuLogin() retorna ResultadoLogin { usuario, isADM }
+        ResultadoLogin resultado = exibirMenuLogin();
+        
+        // Se o usuário for nulo (CPF ou senha inválidos e o usuário optou por sair)
+        // ou se o usuário optou por sair do sistema no menu
+        if (resultado.usuario == nullptr) {
+            std::cout << "Encerrando o programa...\n";
+            break;
+        }
 
-int main(){
+        // Checar se é administrador
+        if (resultado.isADM) {
+            // Converte ponteiro base para ponteiro Administrador*
+            Administrador* adminPtr = dynamic_cast<Administrador*>(resultado.usuario);
+            if (adminPtr) {
+                exibirInterfaceAdministrador(sis, adminPtr);
+            } else {
+                std::cout << "Falha ao converter usuario para Administrador.\n";
+            }
+        } else {
+            // Caso LeitorComum
+            LeitorComum* leitorPtr = dynamic_cast<LeitorComum*>(resultado.usuario);
+            if (leitorPtr) {
+                exibirInterfaceLeitorComum(sis, leitorPtr);
+            } else {
+                std::cout << "Falha ao converter usuario para LeitorComum.\n";
+            }
+        }
+    }
 
-    // Chama a função de gerenciamento de usuários
-    gerenciarLivros();
-    
-    // Opcional: Após o teste, você pode listar os usuários para verificar as alterações
-    std::cout << "\n=== Lista de Livros após o Gerenciamento ===\n";
-    sis.listarUsuarios();
-    sis.listarLivros();
+    // Ao sair do while, o sistema encerra
+    std::cout << "Sistema finalizado.\n";
     return 0;
 }
