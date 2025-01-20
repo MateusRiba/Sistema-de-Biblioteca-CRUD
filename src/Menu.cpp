@@ -1011,7 +1011,7 @@ void exibirInterfaceAdministrador(Sistema& sis, Administrador* admin) {
                     std::cin.ignore();
                     std::cin.get();
                     limparTerminal();
-                    break;
+                    return; // para sair
 
                 default:
                     std::cout << "Opção inválida! Tente novamente.\n";

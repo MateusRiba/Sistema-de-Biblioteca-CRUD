@@ -83,6 +83,14 @@ public:
     Usuario* autenticarUsuarioCPFSenha(const std::string& cpf, const std::string& senha) const;
     bool isAdministrador(const Usuario* usuario) const;
 
+    //Metodos de Leitura de dados
+    bool carregarUsuarios(const std::string& arquivoUsuarios);
+    bool carregarLivrosFisicos(const std::string& arquivoFisicos);
+    bool carregarLivrosDigitais(const std::string& arquivoDigitais);
+
+    bool salvarUsuarios(const std::string& arquivoUsuarios) const;
+    bool salvarLivrosFisicos(const std::string& arquivoFisicos) const;
+    bool salvarLivrosDigitais(const std::string& arquivoDigitais) const;
 
     // Métodos de listar
     void listarUsuarios() const;

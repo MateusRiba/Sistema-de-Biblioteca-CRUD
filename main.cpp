@@ -8,6 +8,11 @@ extern Sistema sis;
 extern Usuario* admin;
 
 int main() {
+    
+    sis.carregarUsuarios("data/usuarios.csv");
+    sis.carregarLivrosFisicos("data/livros_fisicos.csv");
+    sis.carregarLivrosDigitais("data/livros_digitais.csv");
+    
     while(true) {
         // exibirMenuLogin() retorna ResultadoLogin { usuario, isADM }
         ResultadoLogin resultado = exibirMenuLogin();
@@ -38,6 +43,10 @@ int main() {
             }
         }
     }
+
+    sis.salvarUsuarios("data/usuarios.csv");
+    sis.salvarLivrosFisicos("data/livros_fisicos.csv");
+    sis.salvarLivrosDigitais("data/livros_digitais.csv");
 
     // Ao sair do while, o sistema encerra
     std::cout << "Sistema finalizado.\n";
