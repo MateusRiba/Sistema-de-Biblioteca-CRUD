@@ -13,7 +13,7 @@
 Sistema sis;
 
 //Define o Administrador
-Usuario* admin = new Administrador("Admin", "701.678.104-64", "Rua Senador Fabio de Barros 163", "081 99999-6117", "1230", &sis);
+Usuario* admin = new Administrador("Admin", "123", "Rua Senador Fabio de Barros 163", "081 99999-6117", "1230", &sis);
 
 struct Inicializador { //Adiciona o admin
     Inicializador() {
