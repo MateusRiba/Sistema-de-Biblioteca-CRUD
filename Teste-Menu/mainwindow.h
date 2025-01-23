@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "login.h"
 #include "cadastro.h"
+#include <QtSql>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase bancoDeDados;
     Login *login;
     Cadastro *cadastro;
 };

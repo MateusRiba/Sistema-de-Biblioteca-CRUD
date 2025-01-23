@@ -24,7 +24,7 @@ void Cadastro::on_btnCadastro_clicked()
 
     QSqlQuery query;
     query.prepare("insert into usuarios ( nome, cpf, endereco, telefone, senha) values"
-                  "('"+nome+"', '"+cpf+"', '"+endereco+"', '"+telefone+"', '"+senha+"')");
+               "('"+nome+"', '"+cpf+"', '"+endereco+"', '"+telefone+"', '"+senha+"')");
     if(query.exec()) {
         QMessageBox::information(this, "Sucesso", "Usuário cadastrado com sucesso.");
         ui->lineEdit_nome->clear();
