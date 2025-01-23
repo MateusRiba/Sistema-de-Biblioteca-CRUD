@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DigitalBooksList</class>
+ <widget class="QWidget" name="DigitalBooksList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>735</width>
+    <height>383</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>80</y>
+     <width>631</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Autor</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Nome do livro</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>ISBN</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Editora</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>J.K. Rolling</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>Harry Potter e a Pedra Filosofal</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>12345</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>Panini</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
