@@ -25,7 +25,6 @@ private slots:
 
 private:
     Ui::Login *ui;
-    QSqlDatabase bancoDeDados;
     MenuLeitorLogado *menuLeitor;
     MenuAdministradorLogado *menuAdm;
 };

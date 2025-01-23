@@ -2,22 +2,12 @@
 #include "ui_login.h"
 #include <QMessageBox>
 
-static QSqlDatabase bancoDeDados=QSqlDatabase::addDatabase("QSQLITE");
 
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
-    , bancoDeDados(QSqlDatabase::addDatabase("QSQLITE"))
 {
     ui->setupUi(this);
-    bancoDeDados.setDatabaseName("C:/Users/parac/OneDrive/Documentos/Projetos/Sistema-de-Informa-o-Bibliotec-rio/meu_banco.db");
-
-    if(!bancoDeDados.open()){
-        QMessageBox::critical(this, "Erro", "Não foi possível abrir o banco de dados. Verifique o caminho e tente novamente.");
-    }
-    else{
-        QMessageBox::information(this, "Sucesso", "Banco de dados aberto com sucesso.");
-    }
 }
 
 Login::~Login()
@@ -29,11 +19,6 @@ void Login::on_btnEntrar_clicked()
 {
     QString cpf = ui->lineEdit_cpf->text();
     QString senha = ui->lineEdit_senha->text();
-
-    if(!bancoDeDados.isOpen()){
-        QMessageBox::critical(this, "Erro", "Banco de dados não está conectado.");
-        return;
-    }
 
     QSqlQuery query;
     if(query.exec("SELECT * FROM Administrador WHERE cpf='"+ cpf +"' AND senha='"+ senha +"'")){
