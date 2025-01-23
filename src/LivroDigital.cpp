@@ -1,4 +1,4 @@
-#include "LivroDigital.h"
+#include "../include/LivroDigital.h"
 
 // Implementação do método exibir
 void LivroDigital::exibir() const {

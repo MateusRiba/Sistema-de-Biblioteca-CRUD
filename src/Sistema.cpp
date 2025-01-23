@@ -1,9 +1,9 @@
-#include "Sistema.h"
-#include "Usuario.h"
-#include "Livro.h"
-#include "LivroFisico.h"
-#include "LivroDigital.h"
-#include "Emprestimo.h"
+#include "../include/Sistema.h"
+#include "../include/Usuario.h"
+#include "../include/Livro.h"
+#include "../include/LivroFisico.h"
+#include "../include/LivroDigital.h"
+#include "../include/Emprestimo.h"
 
 #include <iostream> 
 

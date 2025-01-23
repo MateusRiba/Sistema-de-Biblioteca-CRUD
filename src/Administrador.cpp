@@ -1,5 +1,5 @@
 // Administrador.cpp
-#include "Administrador.h"
+#include "../include/Administrador.h"
 #include <iostream>
 
 // Construtor
