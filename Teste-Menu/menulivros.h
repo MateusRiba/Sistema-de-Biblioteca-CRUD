@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QWidget>
 #include "digitalbookslist.h"
+#include <QtSql>
+#include "listagemlivrosfisicos.h"
 
 namespace Ui {
 class MenuLivros;
@@ -20,9 +22,13 @@ public:
 private slots:
     void on_btnVisualizarLivros_clicked();
 
+
+    void on_btnVisualizarFisicos_clicked();
+
 private:
     Ui::MenuLivros *ui;
     DigitalBooksList *digitalBooks;
+    ListagemLivrosFisicos *livrosFisicos;
 };
 
 #endif // MENULIVROS_H

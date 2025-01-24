@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
-    <height>345</height>
+    <width>738</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>70</y>
+     <x>140</x>
+     <y>100</y>
      <width>441</width>
      <height>191</height>
     </rect>
@@ -67,14 +67,14 @@
      </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="btnVisualizarLivros">
+     <widget class="QPushButton" name="btnVisualizarFisicos">
       <property name="text">
-       <string>Visualizar Livros Físicos</string>
+       <string>Visualizar Livros Fisicos</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="btnRealizarEmprestimo">
+     <widget class="QPushButton" name="btnVisualizarLivros">
       <property name="text">
        <string>Visualizar Livros Digitais</string>
       </property>

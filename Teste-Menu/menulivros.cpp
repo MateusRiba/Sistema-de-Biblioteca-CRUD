@@ -20,3 +20,9 @@ void MenuLivros::on_btnVisualizarLivros_clicked()
 
 }
 
+void MenuLivros::on_btnVisualizarFisicos_clicked()
+{
+    ListagemLivrosFisicos *listar = new ListagemLivrosFisicos(this);
+    listar->show();
+}
+

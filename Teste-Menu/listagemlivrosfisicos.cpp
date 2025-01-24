@@ -1,17 +1,18 @@
-#include "digitalbookslist.h"
-#include "ui_digitalbookslist.h"
+#include "listagemlivrosfisicos.h"
+#include "ui_listagemlivrosfisicos.h"
 
-DigitalBooksList::DigitalBooksList(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::DigitalBooksList)
+ListagemLivrosFisicos::ListagemLivrosFisicos(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::ListagemLivrosFisicos)
 {
     ui->setupUi(this);
-    carregarlivros();
+    listarlivros();
 }
 
-void DigitalBooksList::carregarlivros() {
+void ListagemLivrosFisicos::listarlivros(){
+
     QSqlQuery query;
-    query.prepare("SELECT Titulo, Autor FROM LivrosDigitais");
+    query.prepare("SELECT Titulo, Autor FROM LivrosFisicos");
 
     if (!query.exec()) {
         qDebug() << "Erro ao executar a consulta:" << query.lastError().text();
@@ -46,8 +47,7 @@ void DigitalBooksList::carregarlivros() {
     }
 }
 
-
-DigitalBooksList::~DigitalBooksList()
+ListagemLivrosFisicos::~ListagemLivrosFisicos()
 {
     delete ui;
 }

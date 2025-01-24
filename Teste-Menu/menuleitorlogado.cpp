@@ -15,7 +15,6 @@ MenuLeitorLogado::~MenuLeitorLogado()
 
 void MenuLeitorLogado::on_btnVisualizarLivros_clicked()
 {
-    hide();
     menuLivros = new MenuLivros(this);
     menuLivros->show();
 }
