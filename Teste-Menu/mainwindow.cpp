@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , bancoDeDados(QSqlDatabase::addDatabase("QSQLITE"))
 {
     ui->setupUi(this);
-    bancoDeDados.setDatabaseName("C:/Users/parac/OneDrive/Documentos/Projetos/Sistema-de-Informa-o-Bibliotec-rio/meu_banco.db");
+    bancoDeDados.setDatabaseName("C:/Users/giova/Desktop/repositorio-edoo/Sistema-de-Informa-o-Bibliotec-rio/meu_banco.db");
 
     if(!bancoDeDados.open()){
         QMessageBox::critical(this, "Erro", "Não foi possível abrir o banco de dados. Verifique o caminho e tente novamente.");

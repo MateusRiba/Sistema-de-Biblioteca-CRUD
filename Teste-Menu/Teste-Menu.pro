@@ -12,6 +12,7 @@ SOURCES += \
     cadastro.cpp \
     digitalbookslist.cpp \
     fmadicionarlivros.cpp \
+    fmeditarlivros.cpp \
     gerenciamentolivros.cpp \
     listagemlivrosfisicos.cpp \
     login.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     cadastro.h \
     digitalbookslist.h \
     fmadicionarlivros.h \
+    fmeditarlivros.h \
     gerenciamentolivros.h \
     listagemlivrosfisicos.h \
     login.h \
@@ -37,6 +39,7 @@ FORMS += \
     cadastro.ui \
     digitalbookslist.ui \
     fmadicionarlivros.ui \
+    fmeditarlivros.ui \
     gerenciamentolivros.ui \
     listagemlivrosfisicos.ui \
     login.ui \
