@@ -4,9 +4,9 @@
 
 #include <QtSql>
 
-static int var_isbn;
+static QString var_isbn;
 
-FmEditarLivros::FmEditarLivros(QWidget *parent, int isbn)
+FmEditarLivros::FmEditarLivros(QWidget *parent, QString isbn)
     : QDialog(parent)
     , ui(new Ui::FmEditarLivros)
 {
@@ -15,18 +15,20 @@ FmEditarLivros::FmEditarLivros(QWidget *parent, int isbn)
 
     QSqlQuery query;
 
-    query.prepare("select * from LivrosDigitais where isbn="+QString::number(isbn));
-    if(query.exec()){
-        query.first();
+    query.prepare("select * from LivrosDigitais where isbn="+QString(isbn));
+    qDebug() <<isbn;
+    if (query.exec()) {
+        query.first();  // Verifica se há um registro válido
+            // Preenche os campos do formulário
+        ui->lineEdit_titulo->setText(query.value(0).toString());  // Título
+        ui->lineEdit_autor->setText(query.value(1).toString());   // Autor
+        ui->lineEdit_editora->setText(query.value(3).toString()); // Editora
+        ui->lineEdit_ano->setText(query.value(4).toString());     // Ano de Publicação
+        ui->lineEdit_valor->setText(query.value(5).toString());   // Valor Diária
 
-        ui->lineEdit_titulo->setText(query.value(0).toString());
-        ui->lineEdit_autor->setText(query.value(1).toString());
-        ui->lineEdit_editora->setText(query.value(3).toString());
-        ui->lineEdit_ano->setText(query.value(4).toString());
-        ui->lineEdit_valor->setText(query.value(5).toString());
-
-    }else{
-        QMessageBox::warning(this, "", "Error ao selecionar livro");
+    } else {
+        QMessageBox::warning(this, "Erro", "Erro ao executar consulta no banco de dados.");
+        qDebug() << "Erro na query:" << query.lastError().text();
     }
 }
 
@@ -42,7 +44,7 @@ void FmEditarLivros::on_btnCadastroLivro_clicked()
     QString autor = ui->lineEdit_autor->text();
     QString editora = ui->lineEdit_editora->text();
     QString ano = ui->lineEdit_ano->text();
-    QString valor_dia = ui->lineEdit_valor->text(); // Corrigido para pegar o valor corretamente
+    QString valor_dia = ui->lineEdit_valor->text();
 
     QSqlQuery query;
 

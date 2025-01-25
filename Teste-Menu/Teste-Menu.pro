@@ -14,6 +14,7 @@ SOURCES += \
     fmadicionarlivros.cpp \
     fmeditarlivros.cpp \
     gerenciamentolivros.cpp \
+    gerenciamentousuarios.cpp \
     listagemlivrosfisicos.cpp \
     login.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     fmadicionarlivros.h \
     fmeditarlivros.h \
     gerenciamentolivros.h \
+    gerenciamentousuarios.h \
     listagemlivrosfisicos.h \
     login.h \
     mainwindow.h \
@@ -41,6 +43,7 @@ FORMS += \
     fmadicionarlivros.ui \
     fmeditarlivros.ui \
     gerenciamentolivros.ui \
+    gerenciamentousuarios.ui \
     listagemlivrosfisicos.ui \
     login.ui \
     mainwindow.ui \

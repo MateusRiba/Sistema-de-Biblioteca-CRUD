@@ -12,7 +12,7 @@ class FmEditarLivros : public QDialog
     Q_OBJECT
 
 public:
-    explicit FmEditarLivros(QWidget *parent = nullptr, int isbn=0);
+    explicit FmEditarLivros(QWidget *parent = nullptr, QString isbn=0);
     ~FmEditarLivros();
 
 private slots:

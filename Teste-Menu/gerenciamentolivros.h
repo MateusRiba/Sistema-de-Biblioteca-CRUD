@@ -36,6 +36,7 @@ private:
     Ui::GerenciamentoLivros *ui;
     FmAdicionarLivros *fmAddLivros;
     FmEditarLivros *editarLivros;
+    QString var_isbn;
 
 
 };

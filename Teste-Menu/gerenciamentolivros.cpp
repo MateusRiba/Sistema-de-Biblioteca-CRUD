@@ -135,27 +135,20 @@ void GerenciamentoLivros::on_btn_editar_clicked()
         return;
     }
 
-    int var_isbn = ui->tw_livros->item(linha, 2)->text().toInt();
+    // Obtém o ISBN da coluna correspondente
+    QString var_isbn = ui->tw_livros->item(linha, 2)->text(); // Armazena como QString
     qDebug() << "Valor de var_isbn:" << var_isbn;
 
+    if (var_isbn.isEmpty()) {
+        QMessageBox::warning(this, "Erro", "ISBN inválido. Por favor, tente novamente.");
+        return;
+    }
     // Abre a janela de edição passando o ISBN
     FmEditarLivros editarLivros(this, var_isbn);
     editarLivros.exec();
 
     // Atualiza a linha editada na tabela
-    QSqlQuery query;
-    query.prepare("SELECT * FROM LivrosDigitais WHERE isbn ="+QString::number(var_isbn));
-
-    if (query.exec()) {
-        query.first();
-        ui->tw_livros->setItem(linha, 0, new QTableWidgetItem(query.value(0).toString())); // Título
-        ui->tw_livros->setItem(linha, 1, new QTableWidgetItem(query.value(1).toString())); // Autor
-        ui->tw_livros->setItem(linha, 3, new QTableWidgetItem(query.value(3).toString())); // Editora
-        ui->tw_livros->setItem(linha, 4, new QTableWidgetItem(query.value(4).toString())); // Ano de publicação
-        ui->tw_livros->setItem(linha, 5, new QTableWidgetItem(query.value(5).toString())); // Valor diária
-    } else {
-        QMessageBox::warning(this, "Erro", "Erro ao consultar o banco de dados para atualizar o livro.");
-    }
+    atualizarTabela(); // Reutiliza o método para atualizar toda a tabela
 }
 
 
