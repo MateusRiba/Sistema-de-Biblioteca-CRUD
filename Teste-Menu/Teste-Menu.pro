@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     cadastro.cpp \
     digitalbookslist.cpp \
+    emprestimosativos.cpp \
+    emprestimosfinalizados.cpp \
     fmadicionarlivros.cpp \
     gerenciamentolivros.cpp \
     listagemlivrosfisicos.cpp \
@@ -19,11 +21,14 @@ SOURCES += \
     mainwindow.cpp \
     menuadministradorlogado.cpp \
     menuleitorlogado.cpp \
-    menulivros.cpp
+    menulivros.cpp \
+    sessao.cpp
 
 HEADERS += \
     cadastro.h \
     digitalbookslist.h \
+    emprestimosativos.h \
+    emprestimosfinalizados.h \
     fmadicionarlivros.h \
     gerenciamentolivros.h \
     listagemlivrosfisicos.h \
@@ -31,11 +36,14 @@ HEADERS += \
     mainwindow.h \
     menuadministradorlogado.h \
     menuleitorlogado.h \
-    menulivros.h
+    menulivros.h \
+    sessao.h
 
 FORMS += \
     cadastro.ui \
     digitalbookslist.ui \
+    emprestimosativos.ui \
+    emprestimosfinalizados.ui \
     fmadicionarlivros.ui \
     gerenciamentolivros.ui \
     listagemlivrosfisicos.ui \

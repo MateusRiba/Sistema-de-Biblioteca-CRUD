@@ -1,6 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
 #include <QMessageBox>
+#include "sessao.h"
 
 
 Login::Login(QWidget *parent)
@@ -28,18 +29,24 @@ void Login::on_btnEntrar_clicked()
         }
         if(cont > 0) {
             QMessageBox::information(this, "Sucesso", "Login efetuado com sucesso! Seja bem-vindo(a).");
+            Sessao::setNomeUsuario(query.value("nome").toString());
+            Sessao::setCpfUsuario(query.value("cpf").toString());
             this->close();
             MenuAdministradorLogado menuAdm;
             menuAdm.exec();
         }
     }
-    if(query.exec("SELECT * FROM usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
+    if(query.exec("SELECT nome, cpf, senha FROM usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
         int cont = 0;
         while(query.next()) {
+            Sessao::setNomeUsuario(query.value("nome").toString());
+            Sessao::setCpfUsuario(query.value("cpf").toString());
             cont++;
         }
         if(cont > 0) {
+
             QMessageBox::information(this, "Sucesso", "Login efetuado com sucesso! Seja bem-vindo(a).");
+            qDebug() << "Nome armazenado na sessão: " << Sessao::getNomeUsuario();
             this->close();
             MenuLeitorLogado menuLeitor;
             menuLeitor.exec();
