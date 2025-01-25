@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FmAdicionarLivros</class>
- <widget class="QDialog" name="FmAdicionarLivros">
+ <class>FmEditarLivros</class>
+ <widget class="QDialog" name="FmEditarLivros">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>514</width>
-    <height>404</height>
+    <width>550</width>
+    <height>381</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>50</y>
+     <x>40</x>
+     <y>30</y>
      <width>481</width>
      <height>321</height>
     </rect>
@@ -47,7 +47,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Cadastro de Livros</string>
+         <string>Tela de edição</string>
         </property>
        </widget>
       </item>
@@ -95,20 +95,6 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>ISBN:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_isbn"/>
-      </item>
-     </layout>
-    </item>
-    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <widget class="QLabel" name="label_6">
@@ -137,11 +123,11 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Valor Diária:</string>
+         <string>Valor diária:</string>
         </property>
        </widget>
       </item>
@@ -195,30 +181,6 @@
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QCommandLinkButton" name="commandLinkButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>172</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>200</width>
-     <height>200</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <fontweight>ExtraBold</fontweight>
-    </font>
-   </property>
-   <property name="text">
-    <string>Voltar</string>
-   </property>
   </widget>
  </widget>
  <resources/>

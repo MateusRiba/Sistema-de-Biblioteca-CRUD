@@ -14,7 +14,9 @@ SOURCES += \
     emprestimosativos.cpp \
     emprestimosfinalizados.cpp \
     fmadicionarlivros.cpp \
+    fmeditarlivros.cpp \
     gerenciamentolivros.cpp \
+    gerenciamentousuarios.cpp \
     listagemlivrosfisicos.cpp \
     login.cpp \
     main.cpp \
@@ -30,7 +32,9 @@ HEADERS += \
     emprestimosativos.h \
     emprestimosfinalizados.h \
     fmadicionarlivros.h \
+    fmeditarlivros.h \
     gerenciamentolivros.h \
+    gerenciamentousuarios.h \
     listagemlivrosfisicos.h \
     login.h \
     mainwindow.h \
@@ -45,7 +49,9 @@ FORMS += \
     emprestimosativos.ui \
     emprestimosfinalizados.ui \
     fmadicionarlivros.ui \
+    fmeditarlivros.ui \
     gerenciamentolivros.ui \
+    gerenciamentousuarios.ui \
     listagemlivrosfisicos.ui \
     login.ui \
     mainwindow.ui \
