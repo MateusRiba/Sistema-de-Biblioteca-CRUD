@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "menulivros.h"
+#include "emprestimosativos.h"
+#include "emprestimosfinalizados.h"
 
 namespace Ui {
 class MenuLeitorLogado;
@@ -19,9 +21,15 @@ public:
 private slots:
     void on_btnVisualizarLivros_clicked();
 
+    void on_btnVisualizarEmprestimo_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MenuLeitorLogado *ui;
     MenuLivros *menuLivros;
+    EmprestimosAtivos *emprestimosA;
+    EmprestimosFinalizados *emprestimosF;
 };
 
 #endif // MENULEITORLOGADO_H
