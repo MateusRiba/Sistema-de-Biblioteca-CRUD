@@ -44,9 +44,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_Emprestimos">
       <property name="text">
-       <string>Gerenciar Empréstimos Ativos</string>
+       <string>Gerenciar Empréstimos</string>
       </property>
      </widget>
     </item>

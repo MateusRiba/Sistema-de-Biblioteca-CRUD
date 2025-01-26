@@ -18,6 +18,8 @@ public:
 private slots:
     void on_btnCadastroLivro_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::FmEditarUsuario *ui;
 };

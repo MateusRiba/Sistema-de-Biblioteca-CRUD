@@ -36,11 +36,7 @@ void Login::on_btnEntrar_clicked()
             menuAdm.exec();
         }
     }
-<<<<<<< HEAD
-    if(query.exec("SELECT * FROM Usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
-=======
     if(query.exec("SELECT nome, cpf, senha FROM usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
->>>>>>> 138b430510f3febcdcea37a80b110d597b009f0d
         int cont = 0;
         while(query.next()) {
             Sessao::setNomeUsuario(query.value("nome").toString());

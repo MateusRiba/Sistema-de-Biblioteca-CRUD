@@ -13,9 +13,12 @@ SOURCES += \
     digitalbookslist.cpp \
     emprestimosativos.cpp \
     emprestimosfinalizados.cpp \
+    fmadicionaremprestimo.cpp \
     fmadicionarlivros.cpp \
+    fmeditaremprestimo.cpp \
     fmeditarlivros.cpp \
     fmeditarusuario.cpp \
+    fmgerenciaremprestimos.cpp \
     gerenciamentolivros.cpp \
     gerenciamentousuarios.cpp \
     listagemlivrosfisicos.cpp \
@@ -32,9 +35,12 @@ HEADERS += \
     digitalbookslist.h \
     emprestimosativos.h \
     emprestimosfinalizados.h \
+    fmadicionaremprestimo.h \
     fmadicionarlivros.h \
+    fmeditaremprestimo.h \
     fmeditarlivros.h \
     fmeditarusuario.h \
+    fmgerenciaremprestimos.h \
     gerenciamentolivros.h \
     gerenciamentousuarios.h \
     listagemlivrosfisicos.h \
@@ -50,9 +56,12 @@ FORMS += \
     digitalbookslist.ui \
     emprestimosativos.ui \
     emprestimosfinalizados.ui \
+    fmadicionaremprestimo.ui \
     fmadicionarlivros.ui \
+    fmeditaremprestimo.ui \
     fmeditarlivros.ui \
     fmeditarusuario.ui \
+    fmgerenciaremprestimos.ui \
     gerenciamentolivros.ui \
     gerenciamentousuarios.ui \
     listagemlivrosfisicos.ui \

@@ -25,6 +25,8 @@ private slots:
 
     void on_btnVisualizarFisicos_clicked();
 
+    void on_btnSair_clicked();
+
 private:
     Ui::MenuLivros *ui;
     DigitalBooksList *digitalBooks;

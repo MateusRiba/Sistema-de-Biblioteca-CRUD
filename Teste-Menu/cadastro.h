@@ -20,6 +20,8 @@ public:
 private slots:
     void on_btnCadastro_clicked();
 
+    void on_btn_cancelar_clicked();
+
 private:
     Ui::Cadastro *ui;
     Login *login;

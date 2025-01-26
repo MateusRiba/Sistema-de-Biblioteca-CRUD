@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Cadastro</class>
- <widget class="QDialog" name="Cadastro">
+ <class>FmEditarEmprestimo</class>
+ <widget class="QDialog" name="FmEditarEmprestimo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>489</width>
-    <height>407</height>
+    <width>603</width>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>50</x>
      <y>50</y>
-     <width>391</width>
-     <height>291</height>
+     <width>481</width>
+     <height>336</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -47,7 +47,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Tela de Cadastro</string>
+         <string>Edição de Empréstimo</string>
         </property>
        </widget>
       </item>
@@ -67,30 +67,38 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_11">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Nome Completo:</string>
+         <string>Id do empréstimo:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_nome"/>
+       <widget class="QLabel" name="label_id">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>CPF:</string>
+         <string>Nome do usuário:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_cpf"/>
+       <widget class="QLabel" name="label_nome_user">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -99,40 +107,86 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Endereço:</string>
+         <string>Título do livro:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_endereco"/>
+       <widget class="QLabel" name="label_titulo">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Telefone:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_telefone"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Data de empréstimo:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_emprestimo">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
       <item>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Senha:</string>
+         <string>Data de devolução:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_senha"/>
+       <widget class="QLabel" name="label_devolucao">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>Ativo</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Concluído</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Vencido</string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </item>
@@ -152,14 +206,14 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btnCadastro">
+       <widget class="QPushButton" name="btnSalvarEmprestimo">
         <property name="text">
-         <string>Cadastrar</string>
+         <string>Salvar</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_cancelar">
+       <widget class="QPushButton" name="btnCancelarEmprestimo">
         <property name="text">
          <string>Cancelar</string>
         </property>

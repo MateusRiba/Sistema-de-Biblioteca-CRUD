@@ -33,3 +33,19 @@ void MenuLeitorLogado::on_pushButton_clicked()
     emprestimosF->show();
 }
 
+
+void MenuLeitorLogado::on_btnSair_clicked()
+{
+    // Exibe uma mensagem de confirmação
+    QMessageBox::StandardButton confirmacao;
+    confirmacao = QMessageBox::question(this, "Confirmação",
+                                        "Você realmente deseja sair?",
+                                        QMessageBox::Yes | QMessageBox::No);
+
+    // Verifica a resposta do usuário
+    if (confirmacao == QMessageBox::Yes) {
+        QApplication::quit(); // Fecha o programa
+    }
+    // Caso seja "No", não faz nada e retorna à janela
+}
+

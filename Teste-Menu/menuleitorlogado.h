@@ -25,6 +25,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_btnSair_clicked();
+
 private:
     Ui::MenuLeitorLogado *ui;
     MenuLivros *menuLivros;

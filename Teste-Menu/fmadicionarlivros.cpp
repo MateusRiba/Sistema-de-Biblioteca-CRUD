@@ -44,3 +44,9 @@ void FmAdicionarLivros::on_btnCadastroLivro_clicked()
 
 }
 
+
+void FmAdicionarLivros::on_pushButton_clicked()
+{
+    close();
+}
+

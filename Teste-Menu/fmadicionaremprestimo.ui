@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Cadastro</class>
- <widget class="QDialog" name="Cadastro">
+ <class>FmAdicionarEmprestimo</class>
+ <widget class="QDialog" name="FmAdicionarEmprestimo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>489</width>
-    <height>407</height>
+    <width>557</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>50</y>
-     <width>391</width>
-     <height>291</height>
+     <y>70</y>
+     <width>481</width>
+     <height>321</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -47,7 +47,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Tela de Cadastro</string>
+         <string>Cadastro de Empréstimo</string>
         </property>
        </widget>
       </item>
@@ -69,23 +69,9 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Nome Completo:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_nome"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>CPF:</string>
+         <string>CPF do usuário:</string>
         </property>
        </widget>
       </item>
@@ -95,30 +81,20 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>Endereço:</string>
+         <string>Nome do usuário:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_endereco"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="label_nome_user">
         <property name="text">
-         <string>Telefone:</string>
+         <string>TextLabel</string>
         </property>
        </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_telefone"/>
       </item>
      </layout>
     </item>
@@ -127,12 +103,84 @@
       <item>
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Senha:</string>
+         <string>ISBN do livro:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_senha"/>
+       <widget class="QLineEdit" name="lineEdit_isbn"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Título do livro:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_titulo_livro">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Data de empréstimo:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit_emprestimo">
+          <property name="dateTime">
+           <datetime>
+            <hour>0</hour>
+            <minute>0</minute>
+            <second>0</second>
+            <year>2025</year>
+            <month>1</month>
+            <day>8</day>
+           </datetime>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Data de devolução:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="dateEdit_devolucao">
+        <property name="dateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2025</year>
+          <month>2</month>
+          <day>1</day>
+         </datetime>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -152,14 +200,14 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btnCadastro">
+       <widget class="QPushButton" name="btnSalvar">
         <property name="text">
-         <string>Cadastrar</string>
+         <string>Salvar</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_cancelar">
+       <widget class="QPushButton" name="btnCancelar">
         <property name="text">
          <string>Cancelar</string>
         </property>

@@ -64,3 +64,9 @@ void FmEditarUsuario::on_btnCadastroLivro_clicked()
         qDebug() << "Erro no query.exec(): " << query.lastError().text();
     }
 }
+
+void FmEditarUsuario::on_pushButton_clicked()
+{
+    this->close();
+}
+

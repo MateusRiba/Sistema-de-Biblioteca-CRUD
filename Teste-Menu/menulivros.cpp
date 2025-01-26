@@ -26,3 +26,9 @@ void MenuLivros::on_btnVisualizarFisicos_clicked()
     listar->show();
 }
 
+
+void MenuLivros::on_btnSair_clicked()
+{
+
+}
+

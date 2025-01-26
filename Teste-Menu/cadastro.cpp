@@ -40,3 +40,9 @@ void Cadastro::on_btnCadastro_clicked()
 
 }
 
+
+void Cadastro::on_btn_cancelar_clicked()
+{
+    close();
+}
+

@@ -68,3 +68,9 @@ void FmEditarLivros::on_btnCadastroLivro_clicked()
     }
 }
 
+
+void FmEditarLivros::on_pushButton_clicked()
+{
+    this->close();
+}
+
