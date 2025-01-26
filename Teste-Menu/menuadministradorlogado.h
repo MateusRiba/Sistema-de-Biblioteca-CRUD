@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "gerenciamentolivros.h"
+#include "gerenciamentousuarios.h"
 
 namespace Ui {
 class MenuAdministradorLogado;
@@ -18,9 +19,12 @@ public:
 
 private slots:
     void on_pushButton_3_clicked();
+    void on_btn_user_menu_clicked();
+
 private:
     Ui::MenuAdministradorLogado *ui;
     GerenciamentoLivros *gerenciamentoLivros;
+    gerenciamentousuarios *gerenciamentoUsers;
 };
 
 #endif // MENUADMINISTRADORLOGADO_H

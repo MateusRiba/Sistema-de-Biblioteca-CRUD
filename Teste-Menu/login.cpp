@@ -33,7 +33,7 @@ void Login::on_btnEntrar_clicked()
             menuAdm.exec();
         }
     }
-    if(query.exec("SELECT * FROM usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
+    if(query.exec("SELECT * FROM Usuarios WHERE cpf='" + cpf + "' AND senha='" + senha + "'")) {
         int cont = 0;
         while(query.next()) {
             cont++;

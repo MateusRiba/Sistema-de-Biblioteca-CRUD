@@ -20,3 +20,11 @@ void MenuAdministradorLogado::on_pushButton_3_clicked()
     gerenciadorLivros.exec();
 }
 
+
+void MenuAdministradorLogado::on_btn_user_menu_clicked()
+{
+    this->close();
+    gerenciamentousuarios gerenciamentoUsers;
+    gerenciamentoUsers.exec();
+}
+

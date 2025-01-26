@@ -28,8 +28,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/giova/Desktop/projeto-edoo/Sistema-de-Informa-o-Bibliotec-rio",
-      "program": "c:/Users/giova/Desktop/projeto-edoo/Sistema-de-Informa-o-Bibliotec-rio/build/Debug/outDebug",
+      "cwd": "c:/Users/giova/Desktop/repositorio-edoo/Sistema-de-Informa-o-Bibliotec-rio",
+      "program": "c:/Users/giova/Desktop/repositorio-edoo/Sistema-de-Informa-o-Bibliotec-rio/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
