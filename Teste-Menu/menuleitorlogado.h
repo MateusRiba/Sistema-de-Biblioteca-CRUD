@@ -5,6 +5,7 @@
 #include "menulivros.h"
 #include "emprestimosativos.h"
 #include "emprestimosfinalizados.h"
+#include "listagememprestimos.h"
 
 namespace Ui {
 class MenuLeitorLogado;
@@ -32,6 +33,7 @@ private:
     MenuLivros *menuLivros;
     EmprestimosAtivos *emprestimosA;
     EmprestimosFinalizados *emprestimosF;
+    ListagemEmprestimos *emprestimos;
 };
 
 #endif // MENULEITORLOGADO_H

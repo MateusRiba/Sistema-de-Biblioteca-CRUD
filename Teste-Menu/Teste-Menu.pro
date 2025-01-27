@@ -21,6 +21,7 @@ SOURCES += \
     fmgerenciaremprestimos.cpp \
     gerenciamentolivros.cpp \
     gerenciamentousuarios.cpp \
+    listagememprestimos.cpp \
     listagemlivrosfisicos.cpp \
     login.cpp \
     main.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     fmgerenciaremprestimos.h \
     gerenciamentolivros.h \
     gerenciamentousuarios.h \
+    listagememprestimos.h \
     listagemlivrosfisicos.h \
     login.h \
     mainwindow.h \
@@ -64,6 +66,7 @@ FORMS += \
     fmgerenciaremprestimos.ui \
     gerenciamentolivros.ui \
     gerenciamentousuarios.ui \
+    listagememprestimos.ui \
     listagemlivrosfisicos.ui \
     login.ui \
     mainwindow.ui \

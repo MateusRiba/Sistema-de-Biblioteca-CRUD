@@ -22,8 +22,8 @@ void MenuLeitorLogado::on_btnVisualizarLivros_clicked()
 
 void MenuLeitorLogado::on_btnVisualizarEmprestimo_clicked()
 {
-    emprestimosA = new EmprestimosAtivos(this);
-    emprestimosA->show();
+    emprestimos = new ListagemEmprestimos(this);
+    emprestimos->show();
 }
 
 
