@@ -20,3 +20,12 @@ void MenuAdministradorLogado::on_pushButton_3_clicked()
     gerenciadorLivros.exec();
 }
 
+
+void MenuAdministradorLogado::on_pushButton_5_clicked()
+{
+    this->close();
+    GerenciamentoLivrosFisicos gerenciadorFisico;
+    gerenciadorFisico.exec();
+
+}
+

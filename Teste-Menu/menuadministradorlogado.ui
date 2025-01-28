@@ -32,7 +32,14 @@
     <item>
      <widget class="QPushButton" name="pushButton_3">
       <property name="text">
-       <string>Gerenciar Livros</string>
+       <string>Gerenciar Livros Digitais</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="text">
+       <string>Gerenciar Livros Físicos</string>
       </property>
      </widget>
     </item>
