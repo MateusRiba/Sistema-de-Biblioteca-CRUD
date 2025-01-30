@@ -17,6 +17,7 @@
                 "${workspaceFolder}/src/Emprestimo.cpp",
                 "${workspaceFolder}/src/Sistema.cpp",
                 "${workspaceFolder}/src/Administrador.cpp",
+                "${workspaceFolder}/src/Menu.cpp",
                 "-I", "${workspaceFolder}/include",
                 "-o", "${workspaceFolder}/build/main"
             ],

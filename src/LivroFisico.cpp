@@ -1,4 +1,4 @@
-#include "LivroFisico.h"
+#include "../include/LivroFisico.h"
 
 // Implementação do método exibir
 void LivroFisico::exibir() const {
@@ -10,7 +10,8 @@ void LivroFisico::exibir() const {
               << "Valor Diário: " << valorDiaria << "\n"
               << "Peso (gramas): " << pesoGrama << "\n"
               << "Tipo de Capa: " << tipoCapa << "\n"
-              << "Quantidade em Estoque: " << quantidadeEstoque << "\n";
+              << "Quantidade em Estoque: " << quantidadeEstoque << "\n"
+              << "/n";
 }
 
 //Incremento e Decremento do estoque

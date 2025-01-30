@@ -1,8 +1,8 @@
-#include "Emprestimo.h"
+#include "../include/Emprestimo.h"
 
 //Inclusão dos headers de Usuario e Livro, pois aqui na implementação será necessário
-#include "Usuario.h"
-#include "Livro.h"
+#include "../include/Usuario.h"
+#include "../include/Livro.h"
 
 //inclusão de bibliotecas que lidam com tempo
 #include <sstream>
