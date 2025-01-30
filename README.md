@@ -1,103 +1,147 @@
-# Sistema-de-Informa-o-Biblioteca
-Este projeto consiste em um Sistema de Informação Bibliotecário em C++, no estilo CRUD (Create, Read, Update, Delete). Ele possibilita a gestão de usuários (Leitor Comum e Administrador), cadastro e gerenciamento de livros (tanto físicos quanto digitais) e controle de empréstimos.
+# Projeto-Edoo
 
-<a id="visao-geral"></a>
+## Descrição
+O Projeto-Edoo é um Sistema de Informação Bibliotecário desenvolvido em C++ no estilo CRUD (Create, Read, Update, Delete). Ele possibilita a gestão de usuários (Leitor Comum e Administrador), cadastro e gerenciamento de livros (tanto físicos quanto digitais) e controle de empréstimos.
 
-1. Visão Geral do Projeto
-O objetivo é fornecer uma aplicação de linha de comando que:
+---
 
-Gere usuários e gerencie suas informações,
-Cadastre e manipule livros (físicos ou digitais),
-Controle empréstimos (criação, devolução e listagem),
-Ofereça menus distintos para Administrador e Leitor Comum.
-Tecnologias e Conceitos Utilizados
-Linguagem C++
-Programação Orientada a Objetos (POO)
-Polimorfismo e Herança
-Vetores dinâmicos (principalmente std::vector)
-Estrutura CRUD (Create, Read, Update, Delete)
-<a id="estrutura-de-pastas"></a>
+## Visão Geral do Projeto
 
-2. Funcionalidades Principais
-Cadastro de Usuários
+O objetivo é fornecer uma aplicação que:
 
-Administrador: tem poderes para gerenciar outros usuários, livros e empréstimos.
-Leitor Comum: pode alugar livros, devolver e gerenciar seus empréstimos.
-Gerenciamento de Livros
+- Gere usuários e gerencie suas informações.
+- Cadastre e manipule livros (físicos ou digitais).
+- Controle empréstimos (criação, devolução e listagem).
+- Ofereça menus distintos para Administrador e Leitor Comum.
 
-Livro Físico: possui atributos como peso, tipo de capa e quantidade em estoque.
-Livro Digital: possui atributos como tamanho do arquivo, licença digital e formato.
-Controle de Empréstimos
+### Tecnologias e Conceitos Utilizados
+- Linguagem C++
+- Programação Orientada a Objetos (POO)
+- Polimorfismo e Herança
+- Vetores dinâmicos (std::vector)
+- Estrutura CRUD (Create, Read, Update, Delete)
 
-Criar empréstimos (verifica estoque, decrementa se for livro físico).
-Encerrar empréstimos (devolução do livro).
-Atualizar datas e custos de empréstimo.
-Listagem de empréstimos (ativos e históricos).
-Menus Diferenciados
+---
 
-Administrador: Menu de gerenciamento de usuários, livros e empréstimos.
-Leitor Comum: Menu de visualização de livros, pesquisa, criação e encerramento de empréstimos.
+## Estrutura do Projeto
+```
+Projeto-Edoo/
+├── build/            # Arquivos compilados
+├── data/             # Dados persistentes (banco de dados, JSON, etc.)
+├── include/          # Arquivos de cabeçalho (.h)
+├── src/              # Implementação do código-fonte (.cpp)
+├── Projeto-EDOO/     # Interface gráfica do qt creator
+├── meu_banco.db      # Banco de dados (SQLite, por exemplo)
+├── main.cpp          # Arquivo principal
+├── README.md         # Documentação do projeto
+└── Projeto-Edoo.pro  # Arquivo de configuração do Qt Creator
+```
 
-<a id="como-executar"></a>
+---
 
-3. Fluxo de Execução
-main.cpp
+## Como Executar o Projeto
 
-Chama exibirMenuLogin().
-Se o usuário logar como Administrador, chama exibirInterfaceAdministrador().
-Se logar como Leitor Comum, chama exibirInterfaceLeitorComum().
-exibirMenuLogin()
+### 1. Executar pelo Terminal do VS Code
 
-1: Possuo Cadastro → Autentica CPF e senha.
-2: Cadastrar-se → Cria um novo Leitor Comum e retorna ao menu.
-3: Sair → Encerra o sistema.
-Interface de Administrador
+1. **Clone o repositório**:
+   ```bash
+   git clone <URL-DO-REPOSITORIO>
+   cd Projeto-Edoo
+   ```
 
-Menu para gerenciar usuários, livros, empréstimos.
-Pode criar/remover/editar usuários, livros e empréstimos.
-Interface de Leitor Comum
+2. **Compile o projeto** usando g++:
+   ```bash
+   g++ -o projeto src/*.cpp -Iinclude -std=c++11
+   ```
+   Se houver bibliotecas externas, ajuste o comando conforme necessário.
 
-Visualiza livros, pesquisa livro para alugar, gerencia seus empréstimos.
-Quando escolhe “Visualizar Livros”, chama visualizarLivros().
-Quando escolhe “Alugar Livro”, chama pesquisarLivro(leitor).
-Gerencia aluguéis em gerenciarAluguel(leitor).
-<a id="detalhes-de-implementacao"></a>
+3. **Execute o programa**:
+   ```bash
+   ./projeto
+   ```
 
-4. Detalhes de Implementação
-<a id="classe-sistema"></a>
+4. **Caso utilize CMake**, crie um diretório `build` e compile:
+   ```bash
+   mkdir build
+   cd build
+   cmake ..
+   make
+   ./projeto
+   ```
 
-4.1. Classe Sistema
-É responsável por manter:
+---
 
-Vetores de usuários e livros (físicos e digitais).
-Lista de empréstimos (std::vector<Emprestimo>).
-Métodos de busca (por CPF, ISBN etc.).
-Métodos CRUD (adicionar/remover/atualizar) para usuários, livros e empréstimos.
-realizarEmprestimo(), encerrarEmprestimoCpfIsbn(), etc.
-<a id="classes-livro-livrofisico-livrodigital"></a>
+### 2. Executar pelo Qt Creator
 
-4.2. Classes Livro, LivroFisico, LivroDigital
-Livro é abstrata, com atributos básicos (título, autor, ISBN, etc.) e exibir() virtual.
-LivroFisico deriva de Livro, tem peso, tipo de capa, quantidade em estoque.
-LivroDigital deriva de Livro, tem tamanho de arquivo, licença digital, formato.
-<a id="classes-usuario-leitorcomum-administrador"></a>
+1. **Abra o Qt Creator**
+2. **Carregue o projeto**:
+   - Vá em `Arquivo > Abrir Arquivo ou Projeto`
+   - Selecione o arquivo `Projeto-Edoo.pro`
+3. **Configure o Kit de Compilação**
+   - Certifique-se de que o Qt adequado está selecionado
+4. **Compile e execute**:
+   - Clique em `Executar` ou pressione `Ctrl + R`
 
-4.3. Classes Usuario, LeitorComum, Administrador
-Usuario é abstrata, com exibir() virtual, CPF, nome, endereço, telefone, senha.
-LeitorComum: pode manter um vetor de empréstimos do próprio leitor, e métodos para listar/encerrar.
-Administrador: pode chamar métodos do Sistema para adicionar/remover/atualizar usuários, livros e empréstimos.
-<a id="classe-emprestimo"></a>
+A interface será carregada conforme o design implementado no Qt Designer.
 
-4.4. Classe Emprestimo
-Armazena:
+---
 
-Ponteiros para Usuario* e Livro*.
-Data de empréstimo, data de devolução, custo e status (finalizado ou não).
-Métodos como finalizarEmprestimo(...), exibirEmprestimo().
-<a id="observacoes-e-proximos-passos"></a>
+## Funcionalidades Principais
 
-5. Observações e Próximos Passos
-Validação e Tratamento de Erros
+### Cadastro de Usuários
+- **Administrador**: gerencia usuários, livros e empréstimos.
+- **Leitor Comum**: pode alugar livros, devolver e gerenciar seus empréstimos.
 
-Persistência de Dados
+### Gerenciamento de Livros
+- **Livro Físico**: atributos como peso, tipo de capa e quantidade em estoque.
+- **Livro Digital**: atributos como tamanho do arquivo, licença digital e formato.
+
+### Controle de Empréstimos
+- Criar e encerrar empréstimos.
+- Atualizar datas e custos de empréstimo.
+- Listagem de empréstimos ativos e históricos.
+
+### Menus Diferenciados
+- **Administrador**: gerenciamento de usuários, livros e empréstimos.
+- **Leitor Comum**: visualização de livros, pesquisa e controle de empréstimos.
+
+---
+
+## Fluxo de Execução
+
+### `main.cpp`
+1. **exibirMenuLogin()**: autentica CPF e senha.
+2. Se o usuário logar como **Administrador**, chama `exibirInterfaceAdministrador()`.
+3. Se logar como **Leitor Comum**, chama `exibirInterfaceLeitorComum()`.
+
+### Interface de Administrador
+- Gerenciar usuários, livros e empréstimos.
+
+### Interface de Leitor Comum
+- Visualiza livros, pesquisa e gerencia empréstimos.
+
+---
+
+## Detalhes de Implementação
+
+### Classe `Sistema`
+- Mantém vetores de usuários e livros.
+- Lista de empréstimos (`std::vector<Emprestimo>`).
+- Métodos de busca e manipulação CRUD.
+
+### Classes `Livro`, `LivroFisico`, `LivroDigital`
+- `Livro` é abstrata com método `exibir()` virtual.
+- `LivroFisico`: peso, tipo de capa, quantidade.
+- `LivroDigital`: tamanho do arquivo, formato.
+
+### Classes `Usuario`, `LeitorComum`, `Administrador`
+- `Usuario`: CPF, nome, senha.
+- `LeitorComum`: gerencia seus empréstimos.
+- `Administrador`: pode alterar o sistema.
+
+### Classe `Emprestimo`
+- Armazena ponteiros para `Usuario*` e `Livro*`.
+- Data de empréstimo, devolução, custo e status.
+
+---
 
