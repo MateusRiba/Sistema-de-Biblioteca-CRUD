@@ -66,15 +66,15 @@ void MenuLivros::on_btnVisualizarFisicos_clicked()
         ui->tw_visualizar_livros->setColumnCount(9);
         while(query.next()){
             ui->tw_visualizar_livros->insertRow(cont);
-            ui->tw_visualizar_livros->setItem(cont,0,new QTableWidgetItem(query.value(1).toString()));
-            ui->tw_visualizar_livros->setItem(cont,1,new QTableWidgetItem(query.value(2).toString()));
-            ui->tw_visualizar_livros->setItem(cont,2,new QTableWidgetItem(query.value(3).toString()));
-            ui->tw_visualizar_livros->setItem(cont,3,new QTableWidgetItem(query.value(4).toString()));
-            ui->tw_visualizar_livros->setItem(cont,4,new QTableWidgetItem(query.value(5).toString()));
-            ui->tw_visualizar_livros->setItem(cont,5,new QTableWidgetItem(query.value(6).toString()));
-            ui->tw_visualizar_livros->setItem(cont,6,new QTableWidgetItem(query.value(7).toString()));
-            ui->tw_visualizar_livros->setItem(cont,7,new QTableWidgetItem(query.value(8).toString()));
-            ui->tw_visualizar_livros->setItem(cont,8,new QTableWidgetItem(query.value(9).toString()));
+            ui->tw_visualizar_livros->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tw_visualizar_livros->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tw_visualizar_livros->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tw_visualizar_livros->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tw_visualizar_livros->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
+            ui->tw_visualizar_livros->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
+            ui->tw_visualizar_livros->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tw_visualizar_livros->setItem(cont,7,new QTableWidgetItem(query.value(7).toString()));
+            ui->tw_visualizar_livros->setItem(cont,8,new QTableWidgetItem(query.value(8).toString()));
             ui->tw_visualizar_livros->setRowHeight(cont,20);
             cont++;
         }
