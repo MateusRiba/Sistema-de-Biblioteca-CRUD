@@ -7,6 +7,7 @@
 #include "Administrador.h"
 #include "LeitorComum.h"
 
+
 #include <iostream> 
 #include <fstream>       
 #include <sstream>      

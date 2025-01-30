@@ -1,40 +1,17 @@
 #include "Menu.h"
 #include "LivroFisico.h"
 #include "LivroDigital.h"
-#include "Sistema.h"
-#include "Usuario.h"
-#include "LeitorComum.h"
-#include "Administrador.h"
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cstdlib>
 
-Sistema sis;
+// Vetores para armazenar os livros
+std::vector<LivroFisico> livrosFisicos;
+std::vector<LivroDigital> livrosDigitais;
 
-//Define o Administrador
-Usuario* admin = new Administrador("Admin", "701.678.104-64", "Rua Senador Fabio de Barros 163", "081 99999-6117", "1230", &sis);
-
-struct Inicializador { //Adiciona o admin
-    Inicializador() {
-        sis.adicionarUsuario(admin);
-    }
-} inicializador;
-
-// Função para limpar o terminal
-void limparTerminal() {
-    #ifdef _WIN32
-        std::system("cls");
-    #else
-        std::system("clear");
-    #endif
-}
-
-//Funções de Cadastro
 void cadastrarLivroFisico() {
     std::string titulo, autor, isbn, editora, tipoCapa;
-    double valorDiaria; // Alterado para double
-    int ano, pesoGrama, quantidadeEstoque;
+    int ano, valorDiaria, pesoGrama, quantidadeEstoque;
 
     std::cout << "=== Cadastro de Livro Físico ===\n";
     std::cout << "Título: ";
@@ -56,16 +33,15 @@ void cadastrarLivroFisico() {
     std::cout << "Quantidade em Estoque: ";
     std::cin >> quantidadeEstoque;
 
-    LivroFisico* livroFisico = new LivroFisico(titulo, autor, isbn, ano, editora, valorDiaria, pesoGrama, tipoCapa, quantidadeEstoque);
-    sis.adicionarLivroFisico(livroFisico);
-    
+    livrosFisicos.emplace_back(titulo, autor, isbn, ano, editora, valorDiaria, pesoGrama, tipoCapa, quantidadeEstoque);
+
     std::cout << "Livro físico cadastrado com sucesso!\n";
 }
 
 void cadastrarLivroDigital() {
     std::string titulo, autor, isbn, editora, formatoArquivo;
-    double valorDiaria; // Alterado para double
-    int ano, tamanhoArquivoKB, licencaDigital;
+    int ano, valorDiaria, tamanhoArquivoKB, licencaDigital;
+
 
     std::cout << "=== Cadastro de Livro Digital ===\n";
     std::cout << "Título: ";
@@ -86,6 +62,7 @@ void cadastrarLivroDigital() {
     std::getline(std::cin >> std::ws, formatoArquivo);
     std::cout << "Licença Digital: ";
     std::cin >> licencaDigital;
+
 
     LivroDigital* livroDigital = new LivroDigital(titulo, autor, isbn, ano, editora, valorDiaria, tamanhoArquivoKB, formatoArquivo, licencaDigital);
     sis.adicionarLivroDigital(livroDigital);
@@ -656,415 +633,30 @@ void gerenciarEmprestimos() {
         std::cout << "Escolha uma opção: ";
         std::cin >> opcao;
 
-        switch(opcao){
-            // Visualiza Empréstimos Ativos
-            case 1: {
-                std::cout << "\n=== Empréstimos Ativos ===\n";
-                sis.listarEmprestimos();
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-            }
-
-            // Cria Empréstimo
-            case 2: {
-                std::string cpf, isbn, dataEmprestimo, dataDevolucao;
-
-                std::cout << "=== Criação de Empréstimo ===\n";
-                std::cout << "CPF do Usuário: ";
-                std::cin.ignore(); // Ignorar newline residual
-                std::getline(std::cin, cpf);
-                std::cout << "ISBN do Livro: ";
-                std::getline(std::cin, isbn);
-                std::cout << "Data de Empréstimo (DD/MM/AAAA): ";
-                std::getline(std::cin, dataEmprestimo);
-                std::cout << "Data de Devolução (DD/MM/AAAA): ";
-                std::getline(std::cin, dataDevolucao);
-
-                // Busca o usuário e o livro no sistema
-                Usuario* usuario = sis.buscarUsuarioPorCPF(cpf);
-                if(!usuario){
-                    std::cout << "Usuário com CPF " << cpf << " não encontrado.\n";
-                    std::cout << "Pressione Enter para continuar...";
-                    std::cin.ignore();
-                    std::cin.get();
-                    limparTerminal();
-                    break;
-                }
-
-                Livro* livro = sis.buscarLivroPorISBN(isbn);
-                if(!livro){
-                    std::cout << "Livro com ISBN " << isbn << " não encontrado.\n";
-                    std::cout << "Pressione Enter para continuar...";
-                    std::cin.ignore();
-                    std::cin.get();
-                    limparTerminal();
-                    break;
-                }
-
-                // Cria o Emprestimo
-                bool sucesso = sis.realizarEmprestimo(usuario, livro, dataEmprestimo, dataDevolucao);
-                if(sucesso){
-                    std::cout << "Empréstimo criado com sucesso.\n";
-                }
-                else{
-                    std::cout << "Falha ao criar empréstimo. Verifique se o usuário e o livro existem e estão disponíveis.\n";
-                }
-
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-            }
-
-            // 3. Encerrar Empréstimo
-            case 3: {
-                std::string cpf, isbn, dataDevolucao;
-                std::cout << "=== Encerramento de Empréstimo ===\n";
-                std::cout << "CPF do Usuário: ";
-                std::cin.ignore(); 
-                std::getline(std::cin, cpf);
-                std::cout << "ISBN do Livro: ";
-                std::getline(std::cin, isbn);
-                std::cout << "Data de Devolução (DD/MM/AAAA): ";
-                std::getline(std::cin, dataDevolucao);
-
-                bool sucesso = sis.encerrarEmprestimoCpfIsbn(cpf, isbn, dataDevolucao);
-                if(sucesso){
-                    std::cout << "Empréstimo encerrado com sucesso.\n";
-                }
-                else{
-                    std::cout << "Falha ao encerrar empréstimo. Verifique se o empréstimo existe.\n";
-                }
-
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-            }
-
-            // 4. Modificar Empréstimo por CPF e ISBN
-            case 4: {
-                std::string cpf, isbn, novaDataEmprestimo, novaDataDevolucao;
-                double novoCusto;
-
-                std::cout << "=== Modificação de Empréstimo ===\n";
-                std::cout << "CPF do Usuário: ";
-                std::cin.ignore(); // Ignorar newline residual
-                std::getline(std::cin, cpf);
-                std::cout << "ISBN do Livro: ";
-                std::getline(std::cin, isbn);
-                std::cout << "Nova Data de Empréstimo (DD/MM/AAAA) (vazio para não alterar): ";
-                std::getline(std::cin, novaDataEmprestimo);
-                std::cout << "Nova Data de Devolução (DD/MM/AAAA) (vazio para não alterar): ";
-                std::getline(std::cin, novaDataDevolucao);
-                std::cout << "Novo Custo do Empréstimo (0 para não alterar): ";
-                std::cin >> novoCusto;
-
-                bool sucesso = sis.atualizarEmprestimo(cpf, isbn, novaDataEmprestimo, novaDataDevolucao, novoCusto);
-                if(sucesso){
-                    std::cout << "Empréstimo atualizado com sucesso.\n";
-                }
-                else{
-                    std::cout << "Falha ao atualizar empréstimo. Verifique se o empréstimo existe.\n";
-                }
-
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-            }
-
-            // 5. Listar Todos Empréstimos
-            case 5: {
-                std::cout << "\n=== Todos os Empréstimos ===\n";
-                sis.listarEmprestimos();
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-            }
-
-            // 0. Voltar
-            case 0:
-                std::cout << "Voltando ao menu anterior...\n";
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-
-            // Opção Inválida
-            default:
-                std::cout << "Opção inválida! Tente novamente.\n";
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                break;
-        }
-    } while(opcao != 0);
-}
-
-void visualizarLivros() {
-
-    int subOpcao = 0;
-
-                    do {
-                        std::cout << "\n=== Listagem de Livros ===\n";
-                        std::cout << "1. Listar Livros Físicos\n";
-                        std::cout << "2. Listar Livros Digitais\n";
-                        std::cout << "0. Voltar\n";
-                        std::cout << "Escolha uma opção: ";
-                        std::cin >> subOpcao;
-
-                        switch(subOpcao){
-                            case 1:
-                                sis.listarLivrosFisicos();
-                                std::cout << "Pressione Enter para continuar...";
-                                std::cin.ignore();
-                                std::cin.get();
-                                limparTerminal();
-                                break;
-                            case 2:
-                                sis.listarLivrosDigitais();
-                                std::cout << "Pressione Enter para continuar...";
-                                std::cin.ignore();
-                                std::cin.get();
-                                limparTerminal();
-                                break;
-                            case 0:
-                                std::cout << "Voltando à listagem principal de livros...\n";
-                                std::cout << "Pressione Enter para continuar...";
-                                std::cin.ignore();
-                                std::cin.get();
-                                limparTerminal();
-                                break;
-                            default:
-                                std::cout << "Opção inválida! Tente novamente.\n";
-                                std::cout << "Pressione Enter para continuar...";
-                                std::cin.ignore();
-                                std::cin.get();
-                                limparTerminal();
-                                break;
-                        }
-                    } while(subOpcao != 0);
-
-}
-
-void pesquisarLivro(LeitorComum* leitor) {
-    std::string titulo;
-    std::string cpf = leitor->getCpf();
-    std::cout << "Digite o título do livro que deseja pesquisar: ";
-    std::cin.ignore(); 
-    std::getline(std::cin, titulo);
-
-    // busca tanto em livros físicos quanto digitais (pois o metodo exibir é virtual)
-    Livro* livroEncontrado = sis.buscarLivroPorTitulo(titulo); 
-    //Não encontra o Livro
-    if(!livroEncontrado){
-        std::cout << "Livro com título \"" << titulo << "\" não encontrado.\n";
-        std::cout << "Pressione Enter para continuar...";
-        std::cin.ignore();
-        return;
-    }
-    //Encontra o Livro
-    std::cout << "\n=== Livro Encontrado ===\n";
-    livroEncontrado->exibir(); 
-
-    // Verificação de Aluguel
-    char opc;
-    std::cout << "Deseja alugar este livro? (S/N): ";
-    std::cin >> opc;
-    if(opc == 'S' || opc == 's'){
-        std::string dataEmprestimo, dataDevolucao;
-        std::cout << "Informe a data de Empréstimo (DD/MM/AAAA): ";
-        std::cin.ignore();
-        std::getline(std::cin, dataEmprestimo);
-        std::cout << "Informe a data de Devolução (DD/MM/AAAA): ";
-        std::getline(std::cin, dataDevolucao);
-
-        // Chama Sistema para criar o empréstimo
-        bool sucesso = sis.realizarEmprestimo(leitor, livroEncontrado, dataEmprestimo, dataDevolucao);
-        if(sucesso){
-            // Adiciona também no vetor de Emprestimos do Leitor
-            Emprestimo novoEmp(leitor, livroEncontrado, dataEmprestimo, dataDevolucao);
-            leitor->adicionarEmprestimo(novoEmp);
-            std::cout << "Empréstimo criado com sucesso!\n";
-        } else {
-            std::cout << "Não foi possível criar o empréstimo. Verifique disponibilidade.\n";
-        }
-    }
-    else{
-        std::cout << "Ok, voltando.\n";
-    }
-    std::cout << "Pressione Enter para continuar...";
-    std::cin.ignore();
-}
-
-void gerenciarAluguel(LeitorComum* leitor) {
-    
-    std::string cpfUsuario = leitor->getCpf();
-    
-    if(!leitor){
-        std::cout << "Leitor não encontrado ou CPF inválido.\n";
-        std::cout << "Pressione Enter para continuar...";
-        std::cin.ignore();
-        return;
-    }
-
-    int opc = 0;
-    do {
-        std::cout << "\n=== Meus Aluguéis ===\n";
-        std::cout << "1. Visualizar Empréstimos Ativos\n";
-        std::cout << "2. Encerrar (Devolver) um Empréstimo\n";
-        std::cout << "0. Voltar\n";
-        std::cout << "Escolha uma opção: ";
-        std::cin >> opc;
-        std::cin.ignore();
-
-        switch(opc){
-            case 1:{
-                leitor->listarEmprestimos(); // Lista os empréstimos ativos do próprio leitor
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                break;
-            }
-            case 2:{
-                // Encerra um empréstimo localmente e encerra no Sistema
-                std::string isbn, dataDev;
-                std::cout << "Digite o ISBN do livro a devolver: ";
-                std::getline(std::cin, isbn);
-                std::cout << "Data de Devolução (DD/MM/AAAA): ";
-                std::getline(std::cin, dataDev);
-
-                // Tenta encerrar localmente
-                bool sucessoLocal = leitor->encerrarEmprestimo(isbn, dataDev);
-                // Tenta encerrar no sistema
-                bool sucessoSistema = sis.encerrarEmprestimoCpfIsbn(cpfUsuario, isbn, dataDev);
-
-                if(sucessoLocal && sucessoSistema){
-                    std::cout << "Empréstimo encerrado com sucesso.\n";
-                } else {
-                    std::cout << "Falha ao encerrar empréstimo. Verifique se existe.\n";
-                }
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                break;
-            }
-            case 0:
-                std::cout << "Voltando...\n";
-                break;
-            default:
-                std::cout << "Opção inválida!\n";
-                break;
-        }
-    } while(opc != 0);
-}
-
-void exibirInterfaceAdministrador(Sistema& sis, Administrador* admin) {
-    //Verificação inicial
-    if (!admin) {
-        std::cout << "Erro: Administrador inválido.\n";
-        return;
-    }
-    while(true) {
-        limparTerminal();
-        int opcao;
-        
-        std::cout << "\n=== Gerenciamento do Sistema ===\n";
-        std::cout << "1. Gerenciar Usuarios\n";;
-        std::cout << "2. Gerenciar Livros\n";
-        std::cout << "3. Gerenciar Emprestimos ativos\n";
-        std::cout << "0. Sair\n";
-        std::cout << "Escolha uma opção: ";
-        std::cin >> opcao;
-
-        switch(opcao){
-            //Gerenciar Usuario
+        switch (opcao) {
             case 1:
-                
-            gerenciarUsuarios();
-            break;
-            //Gerenciar Livros
-            case 2:
-
-            gerenciarLivros();    
-            break;
-
-            //Gerenciar Emprestimos
-            case 3:
-
-            gerenciarEmprestimos();        
-            break;
-
-            case 0:
-
-            std::cout << "Voltando ao menu anterior...\n";
-                    std::cout << "Pressione Enter para continuar...";
-                    std::cin.ignore();
-                    std::cin.get();
-                    limparTerminal();
-                    return; // para sair
-
-                default:
-                    std::cout << "Opção inválida! Tente novamente.\n";
-                    std::cout << "Pressione Enter para continuar...";
-                    std::cin.ignore();
-                    limparTerminal();
-                    exibirMenuLogin();
-                    break;
-            }
-            limparTerminal();
-    }
-}
-void exibirInterfaceLeitorComum(Sistema& sis, LeitorComum* leitor) {
-    if (!leitor) {
-        std::cout << "Leitor inválido.\n";
-        return;
-    }
-
-    while(true) {
-        limparTerminal();
-        int opcao;
-        std::cout << "\n=== Bem Vindo, " << leitor->getNome() << "! ===\n";
-        std::cout << "1. Visualizar Livros na Biblioteca\n";
-        std::cout << "2. Alugar Livro\n";
-        std::cout << "3. Gerenciar meus Alugueis\n";
-        std::cout << "0. Sair\n";
-        std::cout << "Escolha uma opção: ";
-        std::cin >> opcao;
-        std::cin.ignore(); 
-
-        switch(opcao) {
-            case 1:
-                visualizarLivros();
+                cadastrarLivroFisico();
                 break;
             case 2:
-                pesquisarLivro(leitor);
+                cadastrarLivroDigital();
                 break;
             case 3:
-                gerenciarAluguel(leitor);
+                listarLivrosFisicos();
+                break;
+            case 4:
+                listarLivrosDigitais();
                 break;
             case 0:
-                std::cout << "Saindo do menu de Leitor Comum...\n";
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-                limparTerminal();
-                return;  //  Volta ao `main`, que chama exibirMenuLogin() de novo
+                std::cout << "Voltando ao menu principal...\n";
+                break;
             default:
                 std::cout << "Opção inválida! Tente novamente.\n";
-                std::cout << "Pressione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
                 break;
         }
-    }
+    } while (opcao != 0);
+}
+
+void gerenciarUsuarios() {
+    std::cout << "Gerenciamento de usuários ainda não foi implementado.\n";
+
 }
