@@ -33,8 +33,7 @@ Projeto-Edoo/
 ├── Projeto-EDOO/     # Interface gráfica do qt creator
 ├── meu_banco.db      # Banco de dados (SQLite, por exemplo)
 ├── main.cpp          # Arquivo principal
-├── README.md         # Documentação do projeto
-└── Projeto-Edoo.pro  # Arquivo de configuração do Qt Creator
+└── README.md         # Documentação do projeto
 ```
 
 ---
