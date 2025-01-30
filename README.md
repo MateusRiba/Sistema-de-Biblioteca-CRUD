@@ -45,7 +45,7 @@ Projeto-Edoo/
 
 1. **Clone o repositório**:
    ```bash
-   git clone <URL-DO-REPOSITORIO>
+   git clone <https://github.com/MateusRiba/Sistema-de-Informa-o-Bibliotec-rio.git>
    cd Projeto-Edoo
    ```
 
@@ -144,4 +144,35 @@ A interface será carregada conforme o design implementado no Qt Designer.
 - Data de empréstimo, devolução, custo e status.
 
 ---
+## 🤝 Autores
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/giclocate" title="Usuário">
+        <img src="img/giovanna.jpeg" width="100px;" alt="Giovanna"/><br>
+        <sub>
+          <b>Giovanna Clócate</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/MateusRiba" title="Usuário">
+        <img src="img/mateus.jpeg" width="100px;" alt="Giovanna"/><br>
+        <sub>
+          <b>Mateus Ribeiro</b>
+        </sub>
+      </a>
+    </td>
+     </td>
+     <td align="center">
+      <a href="https://github.com/MateusRiba" title="Usuário">
+        <img src="img/sergio.jpeg" width="100px;" alt="Giovanna"/><br>
+        <sub>
+          <b>Sérgio Lira</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
