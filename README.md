@@ -1,4 +1,4 @@
-# Projeto-Edoo
+# Sistema de Gerenciamento Bibliotecário
 
 ## Descrição
 O Projeto-Edoo é um Sistema de Informação Bibliotecário desenvolvido em C++ no estilo CRUD (Create, Read, Update, Delete). Ele possibilita a gestão de usuários (Leitor Comum e Administrador), cadastro e gerenciamento de livros (tanto físicos quanto digitais) e controle de empréstimos.
