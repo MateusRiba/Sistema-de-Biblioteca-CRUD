@@ -43,12 +43,7 @@ public:
     */
     void finalizarEmprestimo(const std::string& dataRealDevolucao);
 
-    /*
-      Método de exibição (para debugging ou interface simples):
-      Mostra qual usuário pegou o livro, datas e status.
-      Para chamar métodos de Usuario e Livro (como getNome(), getTitulo()) 
-      é necessário o #include "Usuario.hpp" e "Livro.hpp" no arquivo .cpp (implementação).
-    */
+    //Método de exibição (para debugging ou interface simples):
     void exibirEmprestimo() const;
 
     //Set e Gets (E verificação)

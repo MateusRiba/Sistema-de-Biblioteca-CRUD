@@ -1,31 +1,54 @@
+#include "Menu.h"            
+#include "LeitorComum.h"     // Precisamos dessa classe para poder dynamic_cast
+#include "Administrador.h"   // Precisamos dessa classe para usar dynamic_cast
 #include <iostream>
-#include "Menu.h"
+
+// Declaração externa das variáveis globais definidas em Menu.cpp
+extern Sistema sis;
+extern Usuario* admin;
 
 int main() {
-    int opcao;
-
-    do {
-        // Exibe o menu principal
-        exibirMenuPrincipal();
-        std::cout << "Selecione uma opção: ";
-        std::cin >> opcao;
-
-        // Trata a escolha do usuário com base na opção selecionada
-        switch (opcao) {
-            case 1:
-                gerenciarLivros(); 
-                break;
-            case 2:
-                gerenciarUsuarios(); 
-                break;
-            case 3:
-                std::cout << "Encerrando o sistema...\n";
-                break;
-            default:
-                std::cout << "Opção inválida! Tente novamente.\n";
-                break;
+    
+    sis.carregarUsuarios("data/usuarios.csv");
+    sis.carregarLivrosFisicos("data/livros_fisicos.csv");
+    sis.carregarLivrosDigitais("data/livros_digitais.csv");
+    
+    while(true) {
+        // exibirMenuLogin() retorna ResultadoLogin { usuario, isADM }
+        ResultadoLogin resultado = exibirMenuLogin();
+        
+        // Se o usuário for nulo (CPF ou senha inválidos e o usuário optou por sair)
+        // ou se o usuário optou por sair do sistema no menu
+        if (resultado.usuario == nullptr) {
+            std::cout << "Encerrando o programa...\n";
+            break;
         }
-    } while (opcao != 3); 
 
+        // Checar se é administrador
+        if (resultado.isADM) {
+            // Converte ponteiro base para ponteiro Administrador*
+            Administrador* adminPtr = dynamic_cast<Administrador*>(resultado.usuario);
+            if (adminPtr) {
+                exibirInterfaceAdministrador(sis, adminPtr);
+            } else {
+                std::cout << "Falha ao converter usuario para Administrador.\n";
+            }
+        } else {
+            // Caso LeitorComum
+            LeitorComum* leitorPtr = dynamic_cast<LeitorComum*>(resultado.usuario);
+            if (leitorPtr) {
+                exibirInterfaceLeitorComum(sis, leitorPtr);
+            } else {
+                std::cout << "Falha ao converter usuario para LeitorComum.\n";
+            }
+        }
+    }
+
+    sis.salvarUsuarios("data/usuarios.csv");
+    sis.salvarLivrosFisicos("data/livros_fisicos.csv");
+    sis.salvarLivrosDigitais("data/livros_digitais.csv");
+
+    // Ao sair do while, o sistema encerra
+    std::cout << "Sistema finalizado.\n";
     return 0;
 }
