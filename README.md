@@ -1,4 +1,4 @@
-# Sistema-de-Informa-o-Bibliotec-rio
+# Sistema-de-Informa-o-Biblioteca
 Este projeto consiste em um Sistema de Informação Bibliotecário em C++, no estilo CRUD (Create, Read, Update, Delete). Ele possibilita a gestão de usuários (Leitor Comum e Administrador), cadastro e gerenciamento de livros (tanto físicos quanto digitais) e controle de empréstimos.
 
 <a id="visao-geral"></a>
