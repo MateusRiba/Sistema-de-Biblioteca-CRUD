@@ -22,8 +22,6 @@ public:
 private slots:
     void on_btnVisualizarLivros_clicked();
 
-    void on_btnVisualizarEmprestimo_clicked();
-
     void on_pushButton_clicked();
 
     void on_btnSair_clicked();

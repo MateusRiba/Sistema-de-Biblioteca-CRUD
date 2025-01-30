@@ -5,6 +5,7 @@
 #include "gerenciamentolivros.h"
 #include "gerenciamentousuarios.h"
 #include "fmgerenciaremprestimos.h"
+#include "gerenciamentolivrosfisicos.h"
 
 namespace Ui {
 class MenuAdministradorLogado;
@@ -26,11 +27,14 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MenuAdministradorLogado *ui;
     GerenciamentoLivros *gerenciamentoLivros;
     gerenciamentousuarios *gerenciamentoUsers;
     FmGerenciarEmprestimos *fmGerenciarEmprestimo;
+    GerenciamentoLivrosFisicos *gerenciamentoFisicos;
 };
 
 #endif // MENUADMINISTRADORLOGADO_H

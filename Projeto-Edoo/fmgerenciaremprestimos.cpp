@@ -17,6 +17,8 @@ FmGerenciarEmprestimos::FmGerenciarEmprestimos(QWidget *parent)
     ui->tw_emprestimos->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tw_emprestimos->setStyleSheet("QTableView {selection-background-color:blue}");
     ui->tw_emprestimos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    on_btn_atualizar_emprestimos_clicked();
+
 }
 
 FmGerenciarEmprestimos::~FmGerenciarEmprestimos()
@@ -99,11 +101,14 @@ void FmGerenciarEmprestimos::on_btn_atualizar_emprestimos_clicked()
 
     // Consulta ao banco de dados para obter os empréstimos
     QSqlQuery query;
-    query.prepare("SELECT e.id_emprestimo, u.cpf, u.nome, l.isbn, l.titulo, "
-                  "e.data_emprestimo, e.data_devolucao, e.status "
-                  "FROM Emprestimos e "
-                  "JOIN Usuarios u ON e.cpf_usuario = u.cpf "
-                  "JOIN LivrosDigitais l ON e.isbn_livro = l.isbn");
+    query.prepare(
+        "SELECT e.id_emprestimo, u.cpf, u.nome, e.isbn_livro, "
+        "COALESCE(ld.titulo, lf.titulo_livro) AS titulo, "
+        "e.data_emprestimo, e.data_devolucao, e.status "
+        "FROM Emprestimos e "
+        "JOIN Usuarios u ON e.cpf_usuario = u.cpf "
+        "LEFT JOIN LivrosDigitais ld ON e.isbn_livro = ld.isbn "
+        "LEFT JOIN LivrosFisicos lf ON e.isbn_livro = lf.isbn");
 
     if (query.exec()) {
         int linha = 0;
@@ -114,7 +119,7 @@ void FmGerenciarEmprestimos::on_btn_atualizar_emprestimos_clicked()
             ui->tw_emprestimos->setItem(linha, 0, new QTableWidgetItem(query.value("id_emprestimo").toString())); // ID do Empréstimo
             ui->tw_emprestimos->setItem(linha, 1, new QTableWidgetItem(query.value("cpf").toString()));          // CPF do Usuário
             ui->tw_emprestimos->setItem(linha, 2, new QTableWidgetItem(query.value("nome").toString()));         // Nome do Usuário
-            ui->tw_emprestimos->setItem(linha, 3, new QTableWidgetItem(query.value("isbn").toString()));         // ISBN do Livro
+            ui->tw_emprestimos->setItem(linha, 3, new QTableWidgetItem(query.value("isbn_livro").toString()));   // ISBN do Livro
             ui->tw_emprestimos->setItem(linha, 4, new QTableWidgetItem(query.value("titulo").toString()));       // Título do Livro
             ui->tw_emprestimos->setItem(linha, 5, new QTableWidgetItem(query.value("data_emprestimo").toString())); // Data de Empréstimo
             ui->tw_emprestimos->setItem(linha, 6, new QTableWidgetItem(query.value("data_devolucao").toString()));  // Data de Devolução
@@ -130,6 +135,7 @@ void FmGerenciarEmprestimos::on_btn_atualizar_emprestimos_clicked()
         qDebug() << "Erro ao executar query:" << query.lastError().text();
     }
 }
+
 
 
 void FmGerenciarEmprestimos::on_btn_pesquisar_emprestimo_clicked()

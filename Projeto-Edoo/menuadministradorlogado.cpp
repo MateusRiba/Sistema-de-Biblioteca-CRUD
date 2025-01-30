@@ -53,3 +53,10 @@ void MenuAdministradorLogado::on_pushButton_4_clicked()
     // Caso seja "No", não faz nada e retorna à janela
 }
 
+
+void MenuAdministradorLogado::on_pushButton_5_clicked()
+{
+    GerenciamentoLivrosFisicos gerenciarFisicos;
+    gerenciarFisicos.exec();
+}
+

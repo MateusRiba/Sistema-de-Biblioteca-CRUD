@@ -24,8 +24,8 @@ void EmprestimosAtivos::listarEmprestimosAtivos() {
     }
 
     QSqlQuery query;
-    query.prepare("SELECT livro, data_emprestimo, data_devolucao "
-                  "FROM emprestimo "
+    query.prepare("SELECT titulo_livro, data_emprestimo, data_devolucao "
+                  "FROM Emprestimo "
                   "WHERE usuario = :nome AND devolvido = 0"); // Filtra pelo nome e empréstimos ativos
     query.bindValue(":nome", nomeUsuario);
 
@@ -44,7 +44,7 @@ void EmprestimosAtivos::listarEmprestimosAtivos() {
     // Preencher os dados no QTableWidget
     while (query.next()) {
         ui->tableWidget->insertRow(row);
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value("livro").toString()));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value("titulo_livro").toString()));
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(query.value("data_emprestimo").toString()));
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(query.value("data_devolucao").toString()));
         row++;

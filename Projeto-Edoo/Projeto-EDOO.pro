@@ -15,11 +15,14 @@ SOURCES += \
     emprestimosfinalizados.cpp \
     fmadicionaremprestimo.cpp \
     fmadicionarlivros.cpp \
+    fmadicionarlivrosfisicos.cpp \
     fmeditaremprestimo.cpp \
     fmeditarlivros.cpp \
+    fmeditarlivrosfisicos.cpp \
     fmeditarusuario.cpp \
     fmgerenciaremprestimos.cpp \
     gerenciamentolivros.cpp \
+    gerenciamentolivrosfisicos.cpp \
     gerenciamentousuarios.cpp \
     listagememprestimos.cpp \
     listagemlivrosfisicos.cpp \
@@ -38,11 +41,14 @@ HEADERS += \
     emprestimosfinalizados.h \
     fmadicionaremprestimo.h \
     fmadicionarlivros.h \
+    fmadicionarlivrosfisicos.h \
     fmeditaremprestimo.h \
     fmeditarlivros.h \
+    fmeditarlivrosfisicos.h \
     fmeditarusuario.h \
     fmgerenciaremprestimos.h \
     gerenciamentolivros.h \
+    gerenciamentolivrosfisicos.h \
     gerenciamentousuarios.h \
     listagememprestimos.h \
     listagemlivrosfisicos.h \
@@ -60,11 +66,14 @@ FORMS += \
     emprestimosfinalizados.ui \
     fmadicionaremprestimo.ui \
     fmadicionarlivros.ui \
+    fmadicionarlivrosfisicos.ui \
     fmeditaremprestimo.ui \
     fmeditarlivros.ui \
+    fmeditarlivrosfisicos.ui \
     fmeditarusuario.ui \
     fmgerenciaremprestimos.ui \
     gerenciamentolivros.ui \
+    gerenciamentolivrosfisicos.ui \
     gerenciamentousuarios.ui \
     listagememprestimos.ui \
     listagemlivrosfisicos.ui \

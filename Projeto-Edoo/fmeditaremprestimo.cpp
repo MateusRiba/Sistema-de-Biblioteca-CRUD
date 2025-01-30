@@ -21,13 +21,18 @@ FmEditarEmprestimo::~FmEditarEmprestimo()
 
 void FmEditarEmprestimo::carregarDadosEmprestimo()
 {
-    // Consulta para buscar os dados do empréstimo pelo ID
+    // Consulta para buscar os dados do empréstimo pelo ID, incluindo LivrosDigitais e LivrosFisicos
     QSqlQuery query;
-    query.prepare("SELECT e.id_emprestimo, u.nome, l.titulo, e.data_emprestimo, e.data_devolucao, e.status "
-                  "FROM Emprestimos e "
-                  "JOIN Usuarios u ON e.cpf_usuario = u.cpf "
-                  "JOIN LivrosDigitais l ON e.isbn_livro = l.isbn "
-                  "WHERE e.id_emprestimo = :id_emprestimo");
+    query.prepare(
+        "SELECT e.id_emprestimo, u.nome, "
+        "COALESCE(ld.titulo, lf.titulo_livro) AS titulo, " // Garante que o título correto seja pego
+        "e.data_emprestimo, e.data_devolucao, e.status "
+        "FROM Emprestimos e "
+        "JOIN Usuarios u ON e.cpf_usuario = u.cpf "
+        "LEFT JOIN LivrosDigitais ld ON e.isbn_livro = ld.isbn "
+        "LEFT JOIN LivrosFisicos lf ON e.isbn_livro = lf.isbn "
+        "WHERE e.id_emprestimo = :id_emprestimo");
+
     query.bindValue(":id_emprestimo", id_emprestimo);
 
     if (query.exec() && query.next()) {
@@ -50,6 +55,7 @@ void FmEditarEmprestimo::carregarDadosEmprestimo()
     ui->label_emprestimo->setEnabled(false);
     ui->label_devolucao->setEnabled(false);
 }
+
 void FmEditarEmprestimo::on_btnSalvarEmprestimo_clicked()
 {
     // Obtém o novo status selecionado
@@ -69,9 +75,7 @@ void FmEditarEmprestimo::on_btnSalvarEmprestimo_clicked()
     }
 }
 
-
 void FmEditarEmprestimo::on_btnCancelarEmprestimo_clicked()
 {
     close();
 }
-

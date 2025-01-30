@@ -40,11 +40,11 @@ void ListagemEmprestimos::carregarEmprestimos()
     // Limpa a tabela antes de carregar os dados
     ui->tw_visualizar_emprestimos->setRowCount(0);
 
-    // Consulta para buscar os empréstimos do usuário logado
+    // Consulta para buscar os empréstimos do usuário logado com status "Ativo"
     QSqlQuery query;
     query.prepare("SELECT id_emprestimo, titulo_livro, isbn_livro, data_emprestimo, data_devolucao, status "
                   "FROM Emprestimos "
-                  "WHERE cpf_usuario = :cpfUsuario");
+                  "WHERE cpf_usuario = :cpfUsuario AND status = 'Ativo'");
     query.bindValue(":cpfUsuario", cpfUsuario);
 
     if (query.exec()) {
@@ -65,7 +65,7 @@ void ListagemEmprestimos::carregarEmprestimos()
 
         // Caso nenhum empréstimo seja encontrado
         if (linha == 0) {
-            QMessageBox::information(this, "Sem empréstimos", "Nenhum empréstimo encontrado para o usuário logado.");
+            QMessageBox::information(this, "Sem empréstimos", "Nenhum empréstimo ativo encontrado para o usuário logado.");
         }
     } else {
         QMessageBox::warning(this, "Erro", "Erro ao carregar os empréstimos: " + query.lastError().text());
