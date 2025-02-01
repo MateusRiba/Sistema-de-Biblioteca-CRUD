@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , bancoDeDados(QSqlDatabase::addDatabase("QSQLITE"))
 {
     ui->setupUi(this);
+    // Altere o caminho do banco para o caminho do seu computador
     bancoDeDados.setDatabaseName("C:/Users/giova/Desktop/repositorio-edoo/Sistema-de-Informa-o-Bibliotec-rio/meu_banco.db");
 
     if(!bancoDeDados.open()){
