@@ -71,14 +71,15 @@ Projeto-Edoo/
 ---
 
 ### 2. Executar pelo Qt Creator
-
+OBS: Caso não tenha instalado o Qt Creator, baixe no link https://www.qt.io/download-qt-installer-oss
 1. **Abra o Qt Creator**
 2. **Carregue o projeto**:
    - Vá em `Arquivo > Abrir Arquivo ou Projeto`
    - Selecione o arquivo `Projeto-Edoo.pro`
-3. **Configure o Kit de Compilação**
-   - Certifique-se de que o Qt adequado está selecionado
-4. **Compile e execute**:
+4. **Altere o arquivo mainwindow.cpp**:
+   - Vá em `Sources > mainwindow.cpp` e altere o caminho do banco para o do seu computador na linha:
+```bancoDeDados.setDatabaseName("caminho/meu_banco.db");```
+3. **Compile e execute**:
    - Clique em `Executar` ou pressione `Ctrl + R`
 
 A interface será carregada conforme o design implementado no Qt Designer.
