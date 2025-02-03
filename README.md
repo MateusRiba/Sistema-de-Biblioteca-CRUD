@@ -164,7 +164,6 @@ A interface será carregada conforme o design implementado no Qt Designer.
         </sub>
       </a>
     </td>
-     </td>
      <td align="center">
       <a href="https://github.com/MateusRiba" title="Usuário">
         <img src="img/sergio.jpeg" width="100px;" alt="Giovanna"/><br>
