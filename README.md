@@ -7,7 +7,7 @@ O Projeto-Edoo é um Sistema de Informação Bibliotecário desenvolvido em C++ 
 
 ## Visão Geral do Projeto
 
-O objetivo é fornecer uma aplicação que:
+O objetivo deste projeto é fornecer uma aplicação que:
 
 - Gere usuários e gerencie suas informações.
 - Cadastre e manipule livros (físicos ou digitais).
@@ -164,7 +164,6 @@ A interface será carregada conforme o design implementado no Qt Designer.
         </sub>
       </a>
     </td>
-     </td>
      <td align="center">
       <a href="https://github.com/MateusRiba" title="Usuário">
         <img src="img/sergio.jpeg" width="100px;" alt="Giovanna"/><br>
